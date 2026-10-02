@@ -1,0 +1,297 @@
+.register-page {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 24px;
+
+    background: #f4f7f2;
+
+    position: relative;
+}
+
+
+/* ============================= */
+/* Language Selector */
+/* ============================= */
+
+.register-language {
+    position: absolute;
+
+    top: 24px;
+    right: 30px;
+
+    z-index: 10;
+}
+
+
+/* ============================= */
+/* Register Card */
+/* ============================= */
+
+.register-card {
+    width: 100%;
+    max-width: 460px;
+
+    padding: 38px;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+    text-align: center;
+}
+
+
+/* ============================= */
+/* Logo */
+/* ============================= */
+
+.register-logo {
+    font-size: 46px;
+
+    margin-bottom: 8px;
+}
+
+
+/* ============================= */
+/* App Name */
+/* ============================= */
+
+.register-card h1 {
+    margin: 0;
+
+    color: #2e7d32;
+
+    font-size: 32px;
+}
+
+
+/* ============================= */
+/* Subtitle */
+/* ============================= */
+
+.register-subtitle {
+    margin: 8px 0 28px;
+
+    color: #777777;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* ============================= */
+/* Heading */
+/* ============================= */
+
+.register-card h2 {
+    margin-bottom: 22px;
+
+    color: #333333;
+}
+
+
+/* ============================= */
+/* Form Group */
+/* ============================= */
+
+.register-form-group {
+    text-align: left;
+
+    margin-bottom: 16px;
+}
+
+
+/* ============================= */
+/* Labels */
+/* ============================= */
+
+.register-form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #444444;
+
+    font-weight: 600;
+}
+
+
+/* ============================= */
+/* Inputs */
+/* ============================= */
+
+.register-form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease;
+}
+
+
+.register-form-group input:focus {
+    border-color: #2e7d32;
+}
+
+
+/* ============================= */
+/* Register Button */
+/* ============================= */
+
+.register-button {
+    width: 100%;
+
+    margin-top: 6px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2e7d32;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+
+.register-button:hover {
+    background: #256628;
+}
+
+
+.register-button:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+}
+
+
+/* ============================= */
+/* Login Link */
+/* ============================= */
+
+.register-login-text {
+    margin-top: 20px;
+
+    color: #666666;
+
+    font-size: 14px;
+}
+
+
+.register-login-text span {
+    color: #2e7d32;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.register-login-text span:hover {
+    text-decoration: underline;
+}
+
+
+/* ============================= */
+/* Responsive */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+    .register-language {
+        top: 16px;
+        right: 16px;
+    }
+
+    .register-card {
+        padding: 30px 24px;
+    }
+
+    .register-card h1 {
+        font-size: 28px;
+    }
+
+}
+.register-top-navigation {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    right: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 10;
+}
+
+.register-home-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: none;
+    background: transparent;
+
+    color: #176b3a;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.register-home-logo {
+    font-size: 25px;
+}
+
+.register-home-button:hover {
+    color: #0f572e;
+}
+
+.register-back-home {
+    display: block;
+
+    margin: 18px auto 0;
+
+    border: none;
+    background: transparent;
+
+    color: #176b3a;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.register-back-home:hover {
+    text-decoration: underline;
+}

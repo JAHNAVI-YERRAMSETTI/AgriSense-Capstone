@@ -1,0 +1,41 @@
+# Python virtual environments
+**/.venv/
+**/venv/
+
+# Python cache
+**/__pycache__/
+*.pyc
+
+# ML datasets / downloaded archives
+ml/disease-detection/dataset/
+ml/**/data/
+ml/**/*.zip
+
+# Generated/trained ML models
+ml/**/*.pkl
+ml/**/*.pth
+ml/**/*.joblib
+
+# Large generated training CSVs
+ml/yield-prediction/yield_training_data.csv
+ml/yield-prediction/yield_long_format.csv
+
+# Eclipse / Spring Tool Suite
+.metadata/
+**/.metadata/
+.settings/
+**/.settings/
+.classpath
+.project
+.factorypath
+
+# ML datasets
+ml/crop-recommendation/Crop_recommendation.csv
+ml/yield-prediction/dld_yield_complete.csv
+ml/yield-prediction/yield_outlier_audit.csv
+ml/yield-prediction/yield_test.csv
+ml/yield-prediction/yield_train.csv
+ml/yield-prediction/yield_validation.csv
+
+# Frontend environment
+frontend/.env
