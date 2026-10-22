@@ -506,7 +506,246 @@ area: "Area",
 
     contextInterpretationDescription:
         "Interpret the current farm conditions before making agricultural decisions.",
+// Constraint / Feasibility Validation
 
+constraintValidation:
+    "Constraint Validation",
+
+constraintValidationTitle:
+    "Constraint / Feasibility Validation",
+
+constraintValidationDescription:
+    "Check whether a candidate farm action is feasible based on the available farm resources.",
+
+constraintWhatThisChecks:
+    "What This Checks",
+
+constraintWhatThisChecksDescription:
+    "This module checks whether the required water, labour, and budget are available for the selected farm action.",
+
+farmStateLabel:
+    "Farm State",
+
+actionRequirements:
+    "Action Requirements",
+
+farmId:
+    "Farm ID",
+
+enterFarmId:
+    "Enter farm ID",
+
+actionName:
+    "Action Name",
+
+enterCandidateAction:
+    "Enter candidate action",
+
+requiredWater:
+    "Required Water",
+
+waterRequired:
+    "Water required",
+
+requiredLabour:
+    "Required Labour",
+
+labourRequired:
+    "Labour required",
+
+requiredBudget:
+    "Required Budget",
+
+budgetRequired:
+    "Budget required",
+
+validateFeasibility:
+    "Validate Feasibility",
+
+validating:
+    "Validating...",
+
+validationResult:
+    "Validation Result",
+
+feasible:
+    "Feasible",
+
+infeasible:
+    "Infeasible",
+
+constrained:
+    "Constrained",
+
+partiallyFeasible:
+    "Partially Feasible",
+
+constraintUnknown:
+    "Unknown",
+
+waterConstraint:
+    "Water",
+
+labourConstraint:
+    "Labour",
+
+budgetConstraint:
+    "Budget",
+
+constraintValidationCompleted:
+    "Constraint validation completed successfully.",
+
+farmIdRequired:
+    "Farm ID is required.",
+
+actionNameRequired:
+    "Action name is required.",
+
+constraintValidationFailed:
+    "Constraint validation failed.",
+
+availableWaterSufficient:
+    "Available water is sufficient.",
+
+availableWaterInsufficient:
+    "Available water is insufficient.",
+
+requiredWaterUnavailable:
+    "Required water value is unavailable.",
+
+currentWaterUnavailable:
+    "Current water availability is unavailable.",
+
+availableLabourSufficient:
+    "Available labour is sufficient.",
+
+availableLabourInsufficient:
+    "Available labour is insufficient.",
+
+requiredLabourUnavailable:
+    "Required labour value is unavailable.",
+
+currentLabourUnavailable:
+    "Current labour availability is unavailable.",
+
+availableBudgetSufficient:
+    "Available budget is sufficient.",
+
+availableBudgetInsufficient:
+    "Available budget is insufficient.",
+
+requiredBudgetUnavailable:
+    "Required budget value is unavailable.",
+
+currentBudgetUnavailable:
+    "Current budget availability is unavailable.",
+
+
+// New Action-Knowledge keys
+
+constraintLoadFarmsFailed:
+    "Unable to load farms.",
+
+constraintSelectFarmDescription:
+    "Select a farm to evaluate applicable agricultural actions.",
+
+constraintChooseFarm:
+    "Choose a farm",
+
+candidateActions:
+    "Candidate Agricultural Actions",
+
+candidateActionsDescription:
+    "Actions are selected from the agricultural knowledge base based on the current crop and growth stage.",
+
+selectAction:
+    "Select Action",
+
+loadingActions:
+    "Loading applicable actions...",
+
+noApplicableActions:
+    "No applicable actions found",
+
+chooseAction:
+    "Choose an agricultural action",
+
+constraintActionRequired:
+    "Please select an agricultural action.",
+
+constraintActionsLoadFailed:
+    "Unable to load applicable agricultural actions.",
+
+constraintRequirementsDescription:
+    "Feasibility is evaluated using the stored requirements of the selected agricultural action.",
+
+constraintKnowledgeBasedValidation:
+    "Requirements are taken from the Agricultural Action Knowledge Base. Unknown requirements are not estimated or fabricated.",
+farmStateLabel: "Farm State",
+actionRequirements: "Action Requirements",
+
+farmId: "Farm ID",
+enterFarmId: "Enter farm ID",
+actionName: "Action Name",
+enterCandidateAction: "Enter candidate action",
+
+requiredWater: "Required Water",
+waterRequired: "Water required",
+
+requiredLabour: "Required Labour",
+labourRequired: "Labour required",
+
+requiredBudget: "Required Budget",
+budgetRequired: "Budget required",
+
+validateFeasibility: "Validate Feasibility",
+validating: "Validating...",
+
+validationResult: "Validation Result",
+
+feasible: "Feasible",
+infeasible: "Infeasible",
+constrained: "Constrained",
+partiallyFeasible: "Partially Feasible",
+constraintUnknown: "Unknown",
+
+waterConstraint: "Water",
+labourConstraint: "Labour",
+budgetConstraint: "Budget",
+
+constraintValidationCompleted:
+    "Constraint validation completed successfully.",
+farmIdRequired: "Farm ID is required.",
+actionNameRequired: "Action name is required.",
+constraintValidationFailed:
+    "Constraint validation failed.",
+
+availableWaterSufficient:
+    "Available water is sufficient.",
+availableWaterInsufficient:
+    "Available water is insufficient.",
+requiredWaterUnavailable:
+    "Required water value is unavailable.",
+currentWaterUnavailable:
+    "Current water availability is unavailable.",
+
+availableLabourSufficient:
+    "Available labour is sufficient.",
+availableLabourInsufficient:
+    "Available labour is insufficient.",
+requiredLabourUnavailable:
+    "Required labour value is unavailable.",
+currentLabourUnavailable:
+    "Current labour availability is unavailable.",
+
+availableBudgetSufficient:
+    "Available budget is sufficient.",
+availableBudgetInsufficient:
+    "Available budget is insufficient.",
+requiredBudgetUnavailable:
+    "Required budget value is unavailable.",
+currentBudgetUnavailable:
+    "Current budget availability is unavailable.",
     contextSelectFarm:
         "Select Farm",
 
@@ -578,6 +817,7 @@ area: "Area",
 
     contextInterpretationNote:
         "These interpretations describe the current farm state. They are used as inputs for the next decision-making stages and do not by themselves represent a final agricultural recommendation.",
+        
 
     contextFarmLoadFailed:
         "Unable to load farms.",
@@ -590,6 +830,7 @@ area: "Area",
 
     contextNoFarmsDescription:
         "Add a farm first to analyze its agricultural context.",
+        
         
     // Common
     backToHome:
@@ -622,7 +863,140 @@ area: "Area",
         "Please fill all required fields",
 
     enterEmailPassword:
-        "Please enter email and password"
+        "Please enter email and password",
+        // Agricultural Action Knowledge
+
+agriculturalActions:
+    "Agricultural Actions",
+
+agriculturalActionsTitle:
+    "Agricultural Action Knowledge",
+
+agriculturalActionsSubtitle:
+    "Manage evidence-supported agricultural actions used by the decision engine.",
+
+agriculturalActionsKnowledgeBase:
+    "Agricultural Action Knowledge Base",
+
+agriculturalActionsKnowledgeDescription:
+    "Actions stored here are matched with farms according to crop and growth stage. Resource requirements are only used when supported by available evidence.",
+
+addAgriculturalAction:
+    "Add Agricultural Action",
+
+agriculturalActionFormDescription:
+    "Add an agricultural action that can be considered by the decision engine.",
+
+actionBasicInformation:
+    "Basic Information",
+
+actionApplicability:
+    "Applicability",
+
+actionResourceRequirements:
+    "Resource Requirements",
+
+actionResourceNote:
+    "Leave a requirement blank when reliable information is unavailable. The system will treat it as unknown instead of estimating it.",
+
+actionEvidence:
+    "Evidence and Source",
+
+actionName:
+    "Action Name",
+
+actionCategory:
+    "Category",
+
+actionDescription:
+    "Description",
+
+applicableCrop:
+    "Applicable Crop",
+
+applicableGrowthStage:
+    "Applicable Growth Stage",
+
+requiredWater:
+    "Required Water",
+
+requiredLabour:
+    "Required Labour",
+
+requiredBudget:
+    "Required Budget",
+
+evidenceStatus:
+    "Evidence Status",
+
+sourceReference:
+    "Source Reference",
+
+actionActive:
+    "Active",
+
+saveAgriculturalAction:
+    "Save Agricultural Action",
+
+agriculturalActionsList:
+    "Agricultural Actions",
+
+agriculturalActionsListDescription:
+    "Actions currently available in the agricultural knowledge base.",
+
+noAgriculturalActions:
+    "No agricultural actions found",
+
+noAgriculturalActionsDescription:
+    "Add an evidence-supported agricultural action to begin building the knowledge base.",
+
+agriculturalActionAdded:
+    "Agricultural action added successfully",
+
+agriculturalActionAddFailed:
+    "Failed to add agricultural action",
+
+agriculturalActionsLoadFailed:
+    "Failed to load agricultural actions",
+
+agriculturalActionNameRequired:
+    "Action name is required",
+
+agriculturalActionCropRequired:
+    "Applicable crop is required",
+
+agriculturalActionGrowthStageRequired:
+    "Applicable growth stage is required",
+
+enterActionName:
+    "Enter action name",
+
+enterActionCategory:
+    "Enter action category",
+
+enterActionDescription:
+    "Describe the agricultural action",
+
+enterApplicableCrop:
+    "Example: Rice",
+
+enterGrowthStage:
+    "Example: Vegetative",
+
+unknownLeaveBlank:
+    "Unknown - leave blank",
+
+selectEvidenceStatus:
+    "Select evidence status",
+
+enterSourceReference:
+    "Enter source or reference",
+
+active:
+    "Active",
+
+inactive:
+    "Inactive",
 };
 
 export default en;

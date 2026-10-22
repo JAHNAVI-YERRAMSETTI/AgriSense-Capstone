@@ -100,20 +100,6 @@ function Sidebar() {
                 </NavLink>
 
 
-                {/* Adaptive Questions */}
-                <NavLink
-                    to="/adaptive-questions"
-                    className={({ isActive }) =>
-                        `sidebar-link ${
-                            isActive ? "active" : ""
-                        }`
-                    }
-                >
-                    <span className="sidebar-icon">❓</span>
-                    <span>{t("adaptiveQuestions")}</span>
-                </NavLink>
-
-
                 {/* Predictions */}
                 <NavLink
                     to="/predictions"
@@ -139,6 +125,34 @@ function Sidebar() {
                 >
                     <span className="sidebar-icon">🧠</span>
                     <span>{t("contextInterpretation")}</span>
+                </NavLink>
+
+
+                {/* Agricultural Action Knowledge */}
+                <NavLink
+                    to="/agricultural-actions"
+                    className={({ isActive }) =>
+                        `sidebar-link ${
+                            isActive ? "active" : ""
+                        }`
+                    }
+                >
+                    <span className="sidebar-icon">📚</span>
+                    <span>{t("agriculturalActions")}</span>
+                </NavLink>
+
+
+                {/* Constraint / Feasibility Validation */}
+                <NavLink
+                    to="/constraint-validation"
+                    className={({ isActive }) =>
+                        `sidebar-link ${
+                            isActive ? "active" : ""
+                        }`
+                    }
+                >
+                    <span className="sidebar-icon">⚖️</span>
+                    <span>{t("constraintValidation")}</span>
                 </NavLink>
 
 

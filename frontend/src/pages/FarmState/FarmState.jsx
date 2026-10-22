@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { toast } from "react-hot-toast";
 
 import { useAuth } from "../../context/AuthContext";
@@ -18,6 +19,7 @@ import {
 import "./FarmState.css";
 
 function FarmState() {
+
     const { farmer } = useAuth();
     const { t } = useLanguage();
 
@@ -53,19 +55,25 @@ function FarmState() {
         diseaseStatus: ""
     });
 
+
     /*
      * Load only farms belonging to the logged-in farmer.
      */
     useEffect(() => {
+
         const loadFarms = async () => {
+
             if (!farmer?.userId) {
+
                 setFarms([]);
                 setSelectedFarmId("");
                 setLoadingFarms(false);
+
                 return;
             }
 
             try {
+
                 setLoadingFarms(true);
 
                 const data = await getFarmsByFarmerId(
@@ -77,14 +85,19 @@ function FarmState() {
                 setFarms(farmerFarms);
 
                 if (farmerFarms.length > 0) {
+
                     setSelectedFarmId(
                         String(farmerFarms[0].id)
                     );
+
                 } else {
+
                     setSelectedFarmId("");
+
                 }
 
             } catch (error) {
+
                 console.error(error);
 
                 toast.error(
@@ -96,11 +109,14 @@ function FarmState() {
                 setSelectedFarmId("");
 
             } finally {
+
                 setLoadingFarms(false);
+
             }
         };
 
         loadFarms();
+
     }, [farmer?.userId, t]);
 
 
@@ -109,12 +125,14 @@ function FarmState() {
      * does not have a Farm State yet.
      */
     const resetFormForSelectedFarm = () => {
+
         const selectedFarm = farms.find(
             (farm) =>
                 String(farm.id) === String(selectedFarmId)
         );
 
         setFormData({
+
             crop: selectedFarm?.crop || "",
             growthStage: selectedFarm?.growthStage || "",
 
@@ -135,6 +153,7 @@ function FarmState() {
 
             cropHealth: "",
             diseaseStatus: ""
+
         });
     };
 
@@ -143,13 +162,24 @@ function FarmState() {
      * Load Farm State whenever selected farm changes.
      */
     useEffect(() => {
+
         const loadFarmState = async () => {
+
             if (!selectedFarmId) {
+
                 setFarmState(null);
                 return;
             }
 
+            /*
+             * Clear the previous farm's state immediately.
+             * This prevents an old farmState.id from being
+             * used while the new farm is loading.
+             */
+            setFarmState(null);
+
             try {
+
                 setLoadingState(true);
 
                 const data = await getFarmStateByFarmId(
@@ -161,14 +191,17 @@ function FarmState() {
                  * this farm does not have a state yet.
                  */
                 if (!data) {
+
                     setFarmState(null);
                     resetFormForSelectedFarm();
+
                     return;
                 }
 
                 setFarmState(data);
 
                 setFormData({
+
                     crop: data.crop || "",
                     growthStage: data.growthStage || "",
 
@@ -189,57 +222,131 @@ function FarmState() {
 
                     cropHealth: data.cropHealth || "",
                     diseaseStatus: data.diseaseStatus || ""
+
                 });
 
             } catch (error) {
+
                 console.error(error);
 
                 if (error.response?.status === 404) {
+
                     setFarmState(null);
                     resetFormForSelectedFarm();
+
                 } else {
+
                     toast.error(
                         error.response?.data?.message ||
                         t("farmStateLoadFailed")
                     );
+
                 }
 
             } finally {
+
                 setLoadingState(false);
+
             }
         };
 
         loadFarmState();
+
     }, [selectedFarmId, farms, t]);
 
 
+    /*
+     * Handle farm selection.
+     */
     const handleFarmChange = (event) => {
-        setSelectedFarmId(event.target.value);
+
+        const farmId = event.target.value;
+
+        /*
+         * Change selected farm.
+         */
+        setSelectedFarmId(farmId);
+
+        /*
+         * Clear previous farm state immediately.
+         * This prevents accidental update of the
+         * previous farm's Farm State.
+         */
+        setFarmState(null);
+
+        /*
+         * Clear the form while the new farm state
+         * is being loaded.
+         */
+        const selectedFarm = farms.find(
+            (farm) =>
+                String(farm.id) === String(farmId)
+        );
+
+        setFormData({
+
+            crop: selectedFarm?.crop || "",
+            growthStage: selectedFarm?.growthStage || "",
+
+            soilMoisture: "",
+            soilPh: "",
+
+            nitrogen: "",
+            phosphorus: "",
+            potassium: "",
+
+            temperature: "",
+            humidity: "",
+            rainfall: "",
+
+            waterAvailable: "",
+            labourAvailable: "",
+            budgetAvailable: "",
+
+            cropHealth: "",
+            diseaseStatus: ""
+
+        });
     };
 
 
+    /*
+     * Handle form field changes.
+     */
     const handleChange = (event) => {
+
         const { name, value } = event.target;
 
         setFormData((previous) => ({
+
             ...previous,
             [name]: value
+
         }));
+
     };
 
 
+    /*
+     * Save Farm State.
+     */
     const handleSave = async (event) => {
+
         event.preventDefault();
 
         if (!selectedFarmId) {
+
             toast.error(t("pleaseSelectFarm"));
+
             return;
         }
 
         try {
+
             setSaving(true);
 
             const farmStateData = {
+
                 farm: {
                     id: Number(selectedFarmId)
                 },
@@ -314,11 +421,17 @@ function FarmState() {
 
                 diseaseStatus:
                     formData.diseaseStatus.trim() || null
+
             };
 
             let response;
 
+            /*
+             * If a Farm State already exists for this
+             * selected farm, update it.
+             */
             if (farmState?.id) {
+
                 response = await updateFarmState(
                     farmState.id,
                     farmStateData
@@ -329,6 +442,10 @@ function FarmState() {
                 );
 
             } else {
+
+                /*
+                 * Otherwise create a new Farm State.
+                 */
                 response = await addFarmState(
                     farmStateData
                 );
@@ -338,9 +455,13 @@ function FarmState() {
                 );
             }
 
+            /*
+             * Store the newly created/updated state.
+             */
             setFarmState(response);
 
         } catch (error) {
+
             console.error(error);
 
             toast.error(
@@ -349,7 +470,9 @@ function FarmState() {
             );
 
         } finally {
+
             setSaving(false);
+
         }
     };
 
@@ -361,6 +484,7 @@ function FarmState() {
 
 
     return (
+
         <div className="farm-state-layout">
 
             <Sidebar />
@@ -368,14 +492,19 @@ function FarmState() {
             <main className="farm-state-main">
 
                 {/* Header */}
+
                 <header className="farm-state-header">
 
                     <div>
-                        <h1>{t("farmState")}</h1>
+
+                        <h1>
+                            {t("farmState")}
+                        </h1>
 
                         <p>
                             {t("farmStateSubtitle")}
                         </p>
+
                     </div>
 
                     <LanguageSelector />
@@ -384,7 +513,9 @@ function FarmState() {
 
 
                 {/* No farms */}
+
                 {!loadingFarms && farms.length === 0 && (
+
                     <section className="farm-state-empty">
 
                         <div className="farm-state-empty-icon">
@@ -400,31 +531,43 @@ function FarmState() {
                         </p>
 
                     </section>
+
                 )}
 
 
                 {/* Loading farms */}
+
                 {loadingFarms && (
+
                     <section className="farm-state-message">
+
                         {t("loadingYourFarms")}
+
                     </section>
+
                 )}
 
 
                 {!loadingFarms && farms.length > 0 && (
+
                     <>
 
                         {/* Farm selector */}
+
                         <section className="farm-selector-card">
 
                             <div>
 
                                 <label htmlFor="farm-select">
+
                                     {t("selectFarm")}
+
                                 </label>
 
                                 <p>
+
                                     {t("selectFarmDescription")}
+
                                 </p>
 
                             </div>
@@ -434,21 +577,29 @@ function FarmState() {
                                 value={selectedFarmId}
                                 onChange={handleFarmChange}
                             >
+
                                 {farms.map((farm) => (
+
                                     <option
                                         key={farm.id}
                                         value={farm.id}
                                     >
+
                                         {farm.farmName} — {farm.location}
+
                                     </option>
+
                                 ))}
+
                             </select>
 
                         </section>
 
 
                         {/* Selected Farm Summary */}
+
                         {selectedFarm && (
+
                             <section className="selected-farm-card">
 
                                 <div className="selected-farm-icon">
@@ -456,6 +607,7 @@ function FarmState() {
                                 </div>
 
                                 <div>
+
                                     <h2>
                                         {selectedFarm.farmName}
                                     </h2>
@@ -463,10 +615,12 @@ function FarmState() {
                                     <p>
                                         {selectedFarm.location}
                                     </p>
+
                                 </div>
 
 
                                 <div className="selected-farm-info">
+
                                     <span>
                                         {t("crop")}
                                     </span>
@@ -474,10 +628,12 @@ function FarmState() {
                                     <strong>
                                         {selectedFarm.crop || "—"}
                                     </strong>
+
                                 </div>
 
 
                                 <div className="selected-farm-info">
+
                                     <span>
                                         {t("area")}
                                     </span>
@@ -485,10 +641,12 @@ function FarmState() {
                                     <strong>
                                         {selectedFarm.area} acres
                                     </strong>
+
                                 </div>
 
 
                                 <div className="selected-farm-info">
+
                                     <span>
                                         {t("growthStage")}
                                     </span>
@@ -496,17 +654,22 @@ function FarmState() {
                                     <strong>
                                         {selectedFarm.growthStage || "—"}
                                     </strong>
+
                                 </div>
 
                             </section>
+
                         )}
 
 
                         {/* Farm State Loading */}
+
                         {loadingState ? (
 
                             <section className="farm-state-message">
+
                                 {t("loadingFarmState")}
+
                             </section>
 
                         ) : (
@@ -517,6 +680,7 @@ function FarmState() {
                             >
 
                                 {/* Crop Information */}
+
                                 <section className="state-section">
 
                                     <div className="state-section-header">
@@ -526,6 +690,7 @@ function FarmState() {
                                         </div>
 
                                         <div>
+
                                             <h2>
                                                 {t("cropInformation")}
                                             </h2>
@@ -535,6 +700,7 @@ function FarmState() {
                                                     "cropInformationDescription"
                                                 )}
                                             </p>
+
                                         </div>
 
                                     </div>
@@ -609,6 +775,7 @@ function FarmState() {
 
 
                                 {/* Soil Conditions */}
+
                                 <section className="state-section">
 
                                     <div className="state-section-header">
@@ -618,6 +785,7 @@ function FarmState() {
                                         </div>
 
                                         <div>
+
                                             <h2>
                                                 {t("soilConditions")}
                                             </h2>
@@ -627,6 +795,7 @@ function FarmState() {
                                                     "soilConditionsDescription"
                                                 )}
                                             </p>
+
                                         </div>
 
                                     </div>
@@ -635,6 +804,7 @@ function FarmState() {
                                     <div className="state-grid state-grid-three">
 
                                         {/* Soil Moisture */}
+
                                         <div className="state-form-group">
 
                                             <label>
@@ -659,6 +829,7 @@ function FarmState() {
 
 
                                         {/* Soil pH */}
+
                                         <div className="state-form-group">
 
                                             <label>
@@ -683,6 +854,7 @@ function FarmState() {
 
 
                                         {/* Nitrogen */}
+
                                         <div className="state-form-group">
 
                                             <label>
@@ -705,6 +877,7 @@ function FarmState() {
 
 
                                         {/* Phosphorus */}
+
                                         <div className="state-form-group">
 
                                             <label>
@@ -727,6 +900,7 @@ function FarmState() {
 
 
                                         {/* Potassium */}
+
                                         <div className="state-form-group">
 
                                             <label>
@@ -753,6 +927,7 @@ function FarmState() {
 
 
                                 {/* Weather Conditions */}
+
                                 <section className="state-section">
 
                                     <div className="state-section-header">
@@ -762,6 +937,7 @@ function FarmState() {
                                         </div>
 
                                         <div>
+
                                             <h2>
                                                 {t("weatherConditions")}
                                             </h2>
@@ -771,6 +947,7 @@ function FarmState() {
                                                     "weatherConditionsDescription"
                                                 )}
                                             </p>
+
                                         </div>
 
                                     </div>
@@ -852,6 +1029,7 @@ function FarmState() {
 
 
                                 {/* Available Resources */}
+
                                 <section className="state-section">
 
                                     <div className="state-section-header">
@@ -861,6 +1039,7 @@ function FarmState() {
                                         </div>
 
                                         <div>
+
                                             <h2>
                                                 {t("availableResources")}
                                             </h2>
@@ -870,6 +1049,7 @@ function FarmState() {
                                                     "availableResourcesDescription"
                                                 )}
                                             </p>
+
                                         </div>
 
                                     </div>
@@ -951,6 +1131,7 @@ function FarmState() {
 
 
                                 {/* Crop Health */}
+
                                 <section className="state-section">
 
                                     <div className="state-section-header">
@@ -960,6 +1141,7 @@ function FarmState() {
                                         </div>
 
                                         <div>
+
                                             <h2>
                                                 {t("cropHealth")}
                                             </h2>
@@ -969,6 +1151,7 @@ function FarmState() {
                                                     "cropHealthDescription"
                                                 )}
                                             </p>
+
                                         </div>
 
                                     </div>
@@ -1059,18 +1242,23 @@ function FarmState() {
 
 
                                 {/* Save */}
+
                                 <div className="farm-state-actions">
 
                                     <button
                                         type="submit"
                                         className="save-state-button"
-                                        disabled={saving}
+                                        disabled={
+                                            saving || loadingState
+                                        }
                                     >
+
                                         {saving
                                             ? t("saving")
                                             : farmState
                                                 ? t("updateFarmState")
                                                 : t("createFarmState")}
+
                                     </button>
 
                                 </div>
@@ -1086,6 +1274,7 @@ function FarmState() {
             </main>
 
         </div>
+
     );
 }
 

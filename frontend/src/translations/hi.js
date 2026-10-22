@@ -505,6 +505,247 @@ area: "क्षेत्रफल",
 
     contextInterpretationDescription:
         "कृषि निर्णय लेने से पहले वर्तमान खेत की स्थितियों का विश्लेषण करें।",
+// Constraint / Feasibility Validation
+
+constraintValidation:
+    "सीमा सत्यापन",
+
+constraintValidationTitle:
+    "सीमा / व्यवहार्यता सत्यापन",
+
+constraintValidationDescription:
+    "उपलब्ध कृषि संसाधनों के आधार पर जाँच करें कि कोई कृषि कार्य संभव है या नहीं।",
+
+constraintWhatThisChecks:
+    "यह क्या जाँचता है",
+
+constraintWhatThisChecksDescription:
+    "यह मॉड्यूल जाँचता है कि चयनित कृषि कार्य के लिए आवश्यक पानी, श्रम और बजट उपलब्ध हैं या नहीं।",
+
+farmStateLabel:
+    "खेत की स्थिति",
+
+actionRequirements:
+    "कार्य की आवश्यकताएँ",
+
+farmId:
+    "खेत ID",
+
+enterFarmId:
+    "खेत ID दर्ज करें",
+
+actionName:
+    "कार्य का नाम",
+
+enterCandidateAction:
+    "संभावित कार्य दर्ज करें",
+
+requiredWater:
+    "आवश्यक पानी",
+
+waterRequired:
+    "आवश्यक पानी",
+
+requiredLabour:
+    "आवश्यक श्रम",
+
+labourRequired:
+    "आवश्यक श्रम",
+
+requiredBudget:
+    "आवश्यक बजट",
+
+budgetRequired:
+    "आवश्यक बजट",
+
+validateFeasibility:
+    "व्यवहार्यता सत्यापित करें",
+
+validating:
+    "सत्यापित किया जा रहा है...",
+
+validationResult:
+    "सत्यापन परिणाम",
+
+feasible:
+    "व्यवहार्य",
+
+infeasible:
+    "अव्यवहार्य",
+
+constrained:
+    "सीमित",
+
+partiallyFeasible:
+    "आंशिक रूप से व्यवहार्य",
+
+constraintUnknown:
+    "अज्ञात",
+
+waterConstraint:
+    "पानी",
+
+labourConstraint:
+    "श्रम",
+
+budgetConstraint:
+    "बजट",
+
+constraintValidationCompleted:
+    "सीमा सत्यापन सफलतापूर्वक पूरा हुआ।",
+
+farmIdRequired:
+    "खेत ID आवश्यक है।",
+
+actionNameRequired:
+    "कार्य का नाम आवश्यक है।",
+
+constraintValidationFailed:
+    "सीमा सत्यापन विफल रहा।",
+
+availableWaterSufficient:
+    "उपलब्ध पानी पर्याप्त है।",
+
+availableWaterInsufficient:
+    "उपलब्ध पानी अपर्याप्त है।",
+
+requiredWaterUnavailable:
+    "आवश्यक पानी का मान उपलब्ध नहीं है।",
+
+currentWaterUnavailable:
+    "वर्तमान पानी की उपलब्धता उपलब्ध नहीं है।",
+
+availableLabourSufficient:
+    "उपलब्ध श्रम पर्याप्त है।",
+
+availableLabourInsufficient:
+    "उपलब्ध श्रम अपर्याप्त है।",
+
+requiredLabourUnavailable:
+    "आवश्यक श्रम का मान उपलब्ध नहीं है।",
+
+currentLabourUnavailable:
+    "वर्तमान श्रम की उपलब्धता उपलब्ध नहीं है।",
+
+availableBudgetSufficient:
+    "उपलब्ध बजट पर्याप्त है।",
+
+availableBudgetInsufficient:
+    "उपलब्ध बजट अपर्याप्त है।",
+
+requiredBudgetUnavailable:
+    "आवश्यक बजट का मान उपलब्ध नहीं है।",
+
+currentBudgetUnavailable:
+    "वर्तमान बजट की उपलब्धता उपलब्ध नहीं है.",
+
+
+// New Action-Knowledge keys
+
+constraintLoadFarmsFailed:
+    "खेत लोड करने में असमर्थ।",
+
+constraintSelectFarmDescription:
+    "लागू कृषि कार्यों का मूल्यांकन करने के लिए एक खेत चुनें।",
+
+constraintChooseFarm:
+    "खेत चुनें",
+
+candidateActions:
+    "संभावित कृषि कार्य",
+
+candidateActionsDescription:
+    "वर्तमान फसल और विकास अवस्था के आधार पर कृषि ज्ञान आधार से कार्यों का चयन किया जाता है।",
+
+selectAction:
+    "कार्य चुनें",
+
+loadingActions:
+    "लागू कार्य लोड हो रहे हैं...",
+
+noApplicableActions:
+    "कोई लागू कार्य नहीं मिला",
+
+chooseAction:
+    "कृषि कार्य चुनें",
+
+constraintActionRequired:
+    "कृपया एक कृषि कार्य चुनें।",
+
+constraintActionsLoadFailed:
+    "लागू कृषि कार्यों को लोड करने में असमर्थ।",
+
+constraintRequirementsDescription:
+    "व्यवहार्यता का मूल्यांकन चयनित कृषि कार्य की संग्रहीत आवश्यकताओं के आधार पर किया जाता है।",
+
+constraintKnowledgeBasedValidation:
+    "आवश्यकताएँ कृषि कार्य ज्ञान आधार से ली जाती हैं। अज्ञात आवश्यकताओं का अनुमान या निर्माण नहीं किया जाता है।",
+
+farmStateLabel: "खेत की स्थिति",
+actionRequirements: "कार्य की आवश्यकताएँ",
+
+farmId: "खेत ID",
+enterFarmId: "खेत ID दर्ज करें",
+actionName: "कार्य का नाम",
+enterCandidateAction: "संभावित कार्य दर्ज करें",
+
+requiredWater: "आवश्यक पानी",
+waterRequired: "आवश्यक पानी",
+
+requiredLabour: "आवश्यक श्रम",
+labourRequired: "आवश्यक श्रम",
+
+requiredBudget: "आवश्यक बजट",
+budgetRequired: "आवश्यक बजट",
+
+validateFeasibility: "व्यवहार्यता जाँचें",
+validating: "जाँच हो रही है...",
+
+validationResult: "सत्यापन परिणाम",
+
+feasible: "व्यवहार्य",
+infeasible: "अव्यवहार्य",
+constrained: "बाधित",
+partiallyFeasible: "आंशिक रूप से व्यवहार्य",
+constraintUnknown: "अज्ञात",
+
+waterConstraint: "पानी",
+labourConstraint: "श्रम",
+budgetConstraint: "बजट",
+
+constraintValidationCompleted:
+    "बाधा सत्यापन सफलतापूर्वक पूरा हुआ।",
+farmIdRequired: "खेत ID आवश्यक है।",
+actionNameRequired: "कार्य का नाम आवश्यक है।",
+constraintValidationFailed:
+    "बाधा सत्यापन विफल हुआ।",
+
+availableWaterSufficient:
+    "उपलब्ध पानी पर्याप्त है।",
+availableWaterInsufficient:
+    "उपलब्ध पानी अपर्याप्त है।",
+requiredWaterUnavailable:
+    "आवश्यक पानी का मान उपलब्ध नहीं है।",
+currentWaterUnavailable:
+    "वर्तमान पानी की उपलब्धता उपलब्ध नहीं है।",
+
+availableLabourSufficient:
+    "उपलब्ध श्रम पर्याप्त है।",
+availableLabourInsufficient:
+    "उपलब्ध श्रम अपर्याप्त है।",
+requiredLabourUnavailable:
+    "आवश्यक श्रम का मान उपलब्ध नहीं है।",
+currentLabourUnavailable:
+    "वर्तमान श्रम की उपलब्धता उपलब्ध नहीं है।",
+
+availableBudgetSufficient:
+    "उपलब्ध बजट पर्याप्त है।",
+availableBudgetInsufficient:
+    "उपलब्ध बजट अपर्याप्त है।",
+requiredBudgetUnavailable:
+    "आवश्यक बजट का मान उपलब्ध नहीं है।",
+currentBudgetUnavailable:
+    "वर्तमान बजट की उपलब्धता उपलब्ध नहीं है।",
 
     contextSelectFarm:
         "खेत चुनें",
@@ -619,7 +860,140 @@ area: "क्षेत्रफल",
         "कृपया सभी आवश्यक जानकारी भरें",
 
     enterEmailPassword:
-        "कृपया ईमेल और पासवर्ड दर्ज करें"
+        "कृपया ईमेल और पासवर्ड दर्ज करें",
+        // Agricultural Action Knowledge
+
+agriculturalActions:
+    "कृषि कार्य",
+
+agriculturalActionsTitle:
+    "कृषि कार्य ज्ञान",
+
+agriculturalActionsSubtitle:
+    "निर्णय इंजन द्वारा उपयोग किए जाने वाले प्रमाण-समर्थित कृषि कार्यों को प्रबंधित करें।",
+
+agriculturalActionsKnowledgeBase:
+    "कृषि कार्य ज्ञान आधार",
+
+agriculturalActionsKnowledgeDescription:
+    "यहां संग्रहीत कार्यों का मिलान फसल और विकास अवस्था के आधार पर खेतों से किया जाता है। संसाधन आवश्यकताओं का उपयोग केवल उपलब्ध प्रमाण होने पर किया जाता है।",
+
+addAgriculturalAction:
+    "कृषि कार्य जोड़ें",
+
+agriculturalActionFormDescription:
+    "एक ऐसा कृषि कार्य जोड़ें जिस पर निर्णय इंजन द्वारा विचार किया जा सके।",
+
+actionBasicInformation:
+    "मूल जानकारी",
+
+actionApplicability:
+    "लागू होने की जानकारी",
+
+actionResourceRequirements:
+    "संसाधन आवश्यकताएं",
+
+actionResourceNote:
+    "जब विश्वसनीय जानकारी उपलब्ध न हो तो आवश्यकता को खाली छोड़ दें। सिस्टम अनुमान लगाने के बजाय इसे अज्ञात मानेगा।",
+
+actionEvidence:
+    "प्रमाण और स्रोत",
+
+actionName:
+    "कार्य का नाम",
+
+actionCategory:
+    "श्रेणी",
+
+actionDescription:
+    "विवरण",
+
+applicableCrop:
+    "लागू फसल",
+
+applicableGrowthStage:
+    "लागू विकास अवस्था",
+
+requiredWater:
+    "आवश्यक पानी",
+
+requiredLabour:
+    "आवश्यक श्रम",
+
+requiredBudget:
+    "आवश्यक बजट",
+
+evidenceStatus:
+    "प्रमाण स्थिति",
+
+sourceReference:
+    "स्रोत संदर्भ",
+
+actionActive:
+    "सक्रिय",
+
+saveAgriculturalAction:
+    "कृषि कार्य सहेजें",
+
+agriculturalActionsList:
+    "कृषि कार्य",
+
+agriculturalActionsListDescription:
+    "वर्तमान में कृषि ज्ञान आधार में उपलब्ध कार्य।",
+
+noAgriculturalActions:
+    "कोई कृषि कार्य नहीं मिला",
+
+noAgriculturalActionsDescription:
+    "ज्ञान आधार बनाना शुरू करने के लिए एक प्रमाण-समर्थित कृषि कार्य जोड़ें।",
+
+agriculturalActionAdded:
+    "कृषि कार्य सफलतापूर्वक जोड़ा गया",
+
+agriculturalActionAddFailed:
+    "कृषि कार्य जोड़ने में विफल",
+
+agriculturalActionsLoadFailed:
+    "कृषि कार्य लोड करने में विफल",
+
+agriculturalActionNameRequired:
+    "कार्य का नाम आवश्यक है",
+
+agriculturalActionCropRequired:
+    "लागू फसल आवश्यक है",
+
+agriculturalActionGrowthStageRequired:
+    "लागू विकास अवस्था आवश्यक है",
+
+enterActionName:
+    "कार्य का नाम दर्ज करें",
+
+enterActionCategory:
+    "कार्य की श्रेणी दर्ज करें",
+
+enterActionDescription:
+    "कृषि कार्य का विवरण दें",
+
+enterApplicableCrop:
+    "उदाहरण: चावल",
+
+enterGrowthStage:
+    "उदाहरण: वनस्पति अवस्था",
+
+unknownLeaveBlank:
+    "अज्ञात - खाली छोड़ें",
+
+selectEvidenceStatus:
+    "प्रमाण स्थिति चुनें",
+
+enterSourceReference:
+    "स्रोत या संदर्भ दर्ज करें",
+
+active:
+    "सक्रिय",
+
+inactive:
+    "निष्क्रिय"
 };
 
 export default hi;

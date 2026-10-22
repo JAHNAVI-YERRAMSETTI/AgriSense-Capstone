@@ -138,13 +138,29 @@ export const AuthProvider = ({ children }) => {
     };
 
 
+    /*
+     * Update authenticated farmer information
+     * after a profile change.
+     */
+    const setAuthenticatedFarmer = (farmerData) => {
+
+        sessionStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(farmerData)
+        );
+
+        setFarmer(farmerData);
+    };
+
+
     const value = {
         farmer,
         isLoggedIn: Boolean(farmer),
         authReady,
         login,
         register,
-        logout
+        logout,
+        setAuthenticatedFarmer
     };
 
 

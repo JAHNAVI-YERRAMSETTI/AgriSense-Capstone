@@ -513,6 +513,247 @@ area: "విస్తీర్ణం",
 
     contextInterpretationDescription:
         "వ్యవసాయ నిర్ణయాలు తీసుకునే ముందు ప్రస్తుత పొలం పరిస్థితులను విశ్లేషించండి.",
+        // Constraint / Feasibility Validation
+
+constraintValidation:
+    "పరిమితుల ధృవీకరణ",
+
+constraintValidationTitle:
+    "పరిమితి / సాధ్యత ధృవీకరణ",
+
+constraintValidationDescription:
+    "అందుబాటులో ఉన్న వ్యవసాయ వనరుల ఆధారంగా ఒక వ్యవసాయ చర్య సాధ్యమా కాదా అని తనిఖీ చేయండి.",
+
+constraintWhatThisChecks:
+    "ఇది ఏమి తనిఖీ చేస్తుంది",
+
+constraintWhatThisChecksDescription:
+    "ఎంచుకున్న వ్యవసాయ చర్యకు అవసరమైన నీరు, కార్మికులు మరియు బడ్జెట్ అందుబాటులో ఉన్నాయా లేదా అని ఈ మాడ్యూల్ తనిఖీ చేస్తుంది.",
+
+farmStateLabel:
+    "పొలం స్థితి",
+
+actionRequirements:
+    "చర్య అవసరాలు",
+
+farmId:
+    "పొలం ID",
+
+enterFarmId:
+    "పొలం ID నమోదు చేయండి",
+
+actionName:
+    "చర్య పేరు",
+
+enterCandidateAction:
+    "సంభావ్య చర్యను నమోదు చేయండి",
+
+requiredWater:
+    "అవసరమైన నీరు",
+
+waterRequired:
+    "అవసరమైన నీరు",
+
+requiredLabour:
+    "అవసరమైన కార్మికులు",
+
+labourRequired:
+    "అవసరమైన కార్మికులు",
+
+requiredBudget:
+    "అవసరమైన బడ్జెట్",
+
+budgetRequired:
+    "అవసరమైన బడ్జెట్",
+
+validateFeasibility:
+    "సాధ్యతను ధృవీకరించండి",
+
+validating:
+    "ధృవీకరిస్తోంది...",
+
+validationResult:
+    "ధృవీకరణ ఫలితం",
+
+feasible:
+    "సాధ్యమైనది",
+
+infeasible:
+    "సాధ్యం కానిది",
+
+constrained:
+    "పరిమితమైనది",
+
+partiallyFeasible:
+    "పాక్షికంగా సాధ్యమైనది",
+
+constraintUnknown:
+    "తెలియదు",
+
+waterConstraint:
+    "నీరు",
+
+labourConstraint:
+    "కార్మికులు",
+
+budgetConstraint:
+    "బడ్జెట్",
+
+constraintValidationCompleted:
+    "పరిమితుల ధృవీకరణ విజయవంతంగా పూర్తయింది.",
+
+farmIdRequired:
+    "పొలం ID అవసరం.",
+
+actionNameRequired:
+    "చర్య పేరు అవసరం.",
+
+constraintValidationFailed:
+    "పరిమితుల ధృవీకరణ విఫలమైంది.",
+
+availableWaterSufficient:
+    "అందుబాటులో ఉన్న నీరు సరిపోతుంది.",
+
+availableWaterInsufficient:
+    "అందుబాటులో ఉన్న నీరు సరిపోదు.",
+
+requiredWaterUnavailable:
+    "అవసరమైన నీటి విలువ అందుబాటులో లేదు.",
+
+currentWaterUnavailable:
+    "ప్రస్తుత నీటి లభ్యత అందుబాటులో లేదు.",
+
+availableLabourSufficient:
+    "అందుబాటులో ఉన్న కార్మికులు సరిపోతారు.",
+
+availableLabourInsufficient:
+    "అందుబాటులో ఉన్న కార్మికులు సరిపోరు.",
+
+requiredLabourUnavailable:
+    "అవసరమైన కార్మికుల విలువ అందుబాటులో లేదు.",
+
+currentLabourUnavailable:
+    "ప్రస్తుత కార్మికుల లభ్యత అందుబాటులో లేదు.",
+
+availableBudgetSufficient:
+    "అందుబాటులో ఉన్న బడ్జెట్ సరిపోతుంది.",
+
+availableBudgetInsufficient:
+    "అందుబాటులో ఉన్న బడ్జెట్ సరిపోదు.",
+
+requiredBudgetUnavailable:
+    "అవసరమైన బడ్జెట్ విలువ అందుబాటులో లేదు.",
+
+currentBudgetUnavailable:
+    "ప్రస్తుత బడ్జెట్ లభ్యత అందుబాటులో లేదు.",
+
+
+// New Action-Knowledge keys
+
+constraintLoadFarmsFailed:
+    "పొలాలను లోడ్ చేయడం సాధ్యం కాలేదు.",
+
+constraintSelectFarmDescription:
+    "వర్తించే వ్యవసాయ చర్యలను అంచనా వేయడానికి ఒక పొలాన్ని ఎంచుకోండి.",
+
+constraintChooseFarm:
+    "పొలాన్ని ఎంచుకోండి",
+
+candidateActions:
+    "సంభావ్య వ్యవసాయ చర్యలు",
+
+candidateActionsDescription:
+    "ప్రస్తుత పంట మరియు వృద్ధి దశ ఆధారంగా వ్యవసాయ జ్ఞాన ఆధారం నుండి చర్యలు ఎంపిక చేయబడతాయి.",
+
+selectAction:
+    "చర్యను ఎంచుకోండి",
+
+loadingActions:
+    "వర్తించే చర్యలను లోడ్ చేస్తోంది...",
+
+noApplicableActions:
+    "వర్తించే చర్యలు ఏవీ కనుగొనబడలేదు",
+
+chooseAction:
+    "వ్యవసాయ చర్యను ఎంచుకోండి",
+
+constraintActionRequired:
+    "దయచేసి ఒక వ్యవసాయ చర్యను ఎంచుకోండి.",
+
+constraintActionsLoadFailed:
+    "వర్తించే వ్యవసాయ చర్యలను లోడ్ చేయడం సాధ్యం కాలేదు.",
+
+constraintRequirementsDescription:
+    "ఎంచుకున్న వ్యవసాయ చర్య యొక్క నిల్వ చేసిన అవసరాల ఆధారంగా సాధ్యతను అంచనా వేస్తారు.",
+
+constraintKnowledgeBasedValidation:
+    "అవసరాలు వ్యవసాయ చర్యల జ్ఞాన ఆధారం నుండి తీసుకోబడతాయి. తెలియని అవసరాలను అంచనా వేయడం లేదా కల్పించడం చేయబడదు.",
+
+farmStateLabel: "పొలం స్థితి",
+actionRequirements: "చర్య అవసరాలు",
+
+farmId: "పొలం ID",
+enterFarmId: "పొలం ID నమోదు చేయండి",
+actionName: "చర్య పేరు",
+enterCandidateAction: "సంభావ్య చర్యను నమోదు చేయండి",
+
+requiredWater: "అవసరమైన నీరు",
+waterRequired: "అవసరమైన నీరు",
+
+requiredLabour: "అవసరమైన కార్మికులు",
+labourRequired: "అవసరమైన కార్మికులు",
+
+requiredBudget: "అవసరమైన బడ్జెట్",
+budgetRequired: "అవసరమైన బడ్జెట్",
+
+validateFeasibility: "సాధ్యతను ధృవీకరించండి",
+validating: "ధృవీకరిస్తోంది...",
+
+validationResult: "ధృవీకరణ ఫలితం",
+
+feasible: "సాధ్యమైనది",
+infeasible: "సాధ్యం కానిది",
+constrained: "పరిమితమైనది",
+partiallyFeasible: "పాక్షికంగా సాధ్యమైనది",
+constraintUnknown: "తెలియదు",
+
+waterConstraint: "నీరు",
+labourConstraint: "కార్మికులు",
+budgetConstraint: "బడ్జెట్",
+
+constraintValidationCompleted:
+    "పరిమితుల ధృవీకరణ విజయవంతంగా పూర్తయింది.",
+farmIdRequired: "పొలం ID అవసరం.",
+actionNameRequired: "చర్య పేరు అవసరం.",
+constraintValidationFailed:
+    "పరిమితుల ధృవీకరణ విఫలమైంది.",
+
+availableWaterSufficient:
+    "అందుబాటులో ఉన్న నీరు సరిపోతుంది.",
+availableWaterInsufficient:
+    "అందుబాటులో ఉన్న నీరు సరిపోదు.",
+requiredWaterUnavailable:
+    "అవసరమైన నీటి విలువ అందుబాటులో లేదు.",
+currentWaterUnavailable:
+    "ప్రస్తుత నీటి లభ్యత అందుబాటులో లేదు.",
+
+availableLabourSufficient:
+    "అందుబాటులో ఉన్న కార్మికులు సరిపోతారు.",
+availableLabourInsufficient:
+    "అందుబాటులో ఉన్న కార్మికులు సరిపోరు.",
+requiredLabourUnavailable:
+    "అవసరమైన కార్మికుల విలువ అందుబాటులో లేదు.",
+currentLabourUnavailable:
+    "ప్రస్తుత కార్మికుల లభ్యత అందుబాటులో లేదు.",
+
+availableBudgetSufficient:
+    "అందుబాటులో ఉన్న బడ్జెట్ సరిపోతుంది.",
+availableBudgetInsufficient:
+    "అందుబాటులో ఉన్న బడ్జెట్ సరిపోదు.",
+requiredBudgetUnavailable:
+    "అవసరమైన బడ్జెట్ విలువ అందుబాటులో లేదు.",
+currentBudgetUnavailable:
+    "ప్రస్తుత బడ్జెట్ లభ్యత అందుబాటులో లేదు.",
 
     contextSelectFarm:
         "పొలాన్ని ఎంచుకోండి",
@@ -628,7 +869,140 @@ area: "విస్తీర్ణం",
         "దయచేసి అవసరమైన అన్ని వివరాలను నమోదు చేయండి",
 
     enterEmailPassword:
-        "దయచేసి ఇమెయిల్ మరియు పాస్‌వర్డ్ నమోదు చేయండి"
+        "దయచేసి ఇమెయిల్ మరియు పాస్‌వర్డ్ నమోదు చేయండి",
+        // Agricultural Action Knowledge
+
+agriculturalActions:
+    "వ్యవసాయ చర్యలు",
+
+agriculturalActionsTitle:
+    "వ్యవసాయ చర్యల జ్ఞాన ఆధారం",
+
+agriculturalActionsSubtitle:
+    "నిర్ణయ ఇంజిన్ ఉపయోగించే ఆధారాలతో మద్దతు ఉన్న వ్యవసాయ చర్యలను నిర్వహించండి.",
+
+agriculturalActionsKnowledgeBase:
+    "వ్యవసాయ చర్యల జ్ఞాన ఆధారం",
+
+agriculturalActionsKnowledgeDescription:
+    "ఇక్కడ నిల్వ చేసిన చర్యలు పంట మరియు పెరుగుదల దశ ఆధారంగా పొలాలతో సరిపోల్చబడతాయి. అందుబాటులో ఉన్న ఆధారాలు ఉన్నప్పుడు మాత్రమే వనరుల అవసరాలు ఉపయోగించబడతాయి.",
+
+addAgriculturalAction:
+    "వ్యవసాయ చర్యను జోడించండి",
+
+agriculturalActionFormDescription:
+    "నిర్ణయ ఇంజిన్ పరిగణించగల వ్యవసాయ చర్యను జోడించండి.",
+
+actionBasicInformation:
+    "ప్రాథమిక సమాచారం",
+
+actionApplicability:
+    "వర్తించే సమాచారం",
+
+actionResourceRequirements:
+    "వనరుల అవసరాలు",
+
+actionResourceNote:
+    "విశ్వసనీయ సమాచారం అందుబాటులో లేనప్పుడు ఆ అవసరాన్ని ఖాళీగా ఉంచండి. సిస్టమ్ అంచనా వేయకుండా దానిని తెలియనిదిగా పరిగణిస్తుంది.",
+
+actionEvidence:
+    "ఆధారం మరియు మూలం",
+
+actionName:
+    "చర్య పేరు",
+
+actionCategory:
+    "వర్గం",
+
+actionDescription:
+    "వివరణ",
+
+applicableCrop:
+    "వర్తించే పంట",
+
+applicableGrowthStage:
+    "వర్తించే పెరుగుదల దశ",
+
+requiredWater:
+    "అవసరమైన నీరు",
+
+requiredLabour:
+    "అవసరమైన కార్మికులు",
+
+requiredBudget:
+    "అవసరమైన బడ్జెట్",
+
+evidenceStatus:
+    "ఆధార స్థితి",
+
+sourceReference:
+    "మూల సూచన",
+
+actionActive:
+    "క్రియాశీలం",
+
+saveAgriculturalAction:
+    "వ్యవసాయ చర్యను సేవ్ చేయండి",
+
+agriculturalActionsList:
+    "వ్యవసాయ చర్యలు",
+
+agriculturalActionsListDescription:
+    "ప్రస్తుతం వ్యవసాయ జ్ఞాన ఆధారంలో అందుబాటులో ఉన్న చర్యలు.",
+
+noAgriculturalActions:
+    "వ్యవసాయ చర్యలు ఏవీ కనుగొనబడలేదు",
+
+noAgriculturalActionsDescription:
+    "జ్ఞాన ఆధారాన్ని నిర్మించడం ప్రారంభించడానికి ఆధారాలతో మద్దతు ఉన్న వ్యవసాయ చర్యను జోడించండి.",
+
+agriculturalActionAdded:
+    "వ్యవసాయ చర్య విజయవంతంగా జోడించబడింది",
+
+agriculturalActionAddFailed:
+    "వ్యవసాయ చర్యను జోడించడం విఫలమైంది",
+
+agriculturalActionsLoadFailed:
+    "వ్యవసాయ చర్యలను లోడ్ చేయడం విఫలమైంది",
+
+agriculturalActionNameRequired:
+    "చర్య పేరు అవసరం",
+
+agriculturalActionCropRequired:
+    "వర్తించే పంట అవసరం",
+
+agriculturalActionGrowthStageRequired:
+    "వర్తించే పెరుగుదల దశ అవసరం",
+
+enterActionName:
+    "చర్య పేరు నమోదు చేయండి",
+
+enterActionCategory:
+    "చర్య వర్గాన్ని నమోదు చేయండి",
+
+enterActionDescription:
+    "వ్యవసాయ చర్యను వివరించండి",
+
+enterApplicableCrop:
+    "ఉదాహరణ: వరి",
+
+enterGrowthStage:
+    "ఉదాహరణ: వృద్ధి దశ",
+
+unknownLeaveBlank:
+    "తెలియదు - ఖాళీగా ఉంచండి",
+
+selectEvidenceStatus:
+    "ఆధార స్థితిని ఎంచుకోండి",
+
+enterSourceReference:
+    "మూలం లేదా సూచనను నమోదు చేయండి",
+
+active:
+    "క్రియాశీలం",
+
+inactive:
+    "నిష్క్రియం",
 };
 
 export default te;

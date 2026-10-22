@@ -1,0 +1,693 @@
+/* =========================================================
+   PAGE LAYOUT
+========================================================= */
+
+.constraint-page-layout {
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+.constraint-page-main {
+    min-height: 100vh;
+
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+}
+
+.constraint-page {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+
+.constraint-container {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 30px 32px;
+
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.constraint-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 25px;
+}
+
+
+.constraint-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.constraint-title-row svg {
+    color: #2d713a;
+}
+
+
+.constraint-title-row h1 {
+    margin: 0;
+
+    color: #183b56;
+
+    font-size: 30px;
+}
+
+
+.constraint-header p {
+    margin: 8px 0 0;
+
+    color: #587086;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.constraint-card {
+    background: white;
+
+    border: 1px solid #d7e0e5;
+
+    border-radius: 12px;
+
+    padding: 22px;
+
+    margin-bottom: 22px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+.constraint-section-header {
+    margin-bottom: 18px;
+}
+
+
+.constraint-section-header h2 {
+    margin: 0 0 5px;
+
+    color: #183b56;
+
+    font-size: 20px;
+}
+
+
+.constraint-section-header p {
+    margin: 0;
+
+    color: #607589;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.constraint-form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.constraint-form-group label {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #344d60;
+}
+
+
+.constraint-form-group select {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 13px;
+
+    border: 1px solid #bdc9d0;
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: #243c4d;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+.constraint-form-group select:focus {
+    border-color: #418c50;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(65, 140, 80, 0.1);
+}
+
+
+/* =========================================================
+   FARM SUMMARY
+========================================================= */
+
+.farm-state-summary {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+
+.farm-state-summary > div {
+    padding: 14px;
+
+    background: #f5f8f6;
+
+    border: 1px solid #dce6df;
+
+    border-radius: 8px;
+}
+
+
+.farm-state-summary span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #70818e;
+
+    font-size: 12px;
+}
+
+
+.farm-state-summary strong {
+    display: block;
+
+    color: #173d58;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.constraint-loading {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 30px;
+
+    color: #607589;
+}
+
+
+/* =========================================================
+   SELECTED ACTION
+========================================================= */
+
+.selected-action {
+    margin-top: 18px;
+
+    padding: 18px;
+
+    background: #f5f9f5;
+
+    border: 1px solid #cfe0d1;
+
+    border-radius: 9px;
+}
+
+
+.selected-action-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+}
+
+
+.selected-action-header h3 {
+    margin: 0 0 8px;
+
+    color: #214c30;
+
+    font-size: 18px;
+}
+
+
+.reference-badge {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #e9f0f5;
+
+    color: #4e687b;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+.selected-action-details {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 15px;
+}
+
+
+.selected-action-details > div {
+    padding: 12px;
+
+    background: white;
+
+    border: 1px solid #dce6df;
+
+    border-radius: 7px;
+}
+
+
+.selected-action-details span {
+    display: block;
+
+    color: #728492;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+
+.selected-action-details strong {
+    color: #29465a;
+
+    font-size: 13px;
+}
+
+
+.action-description {
+    margin: 15px 0 0;
+
+    color: #4e6473;
+
+    line-height: 1.55;
+}
+
+
+.action-source {
+    margin: 12px 0 0;
+
+    color: #607589;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   REQUIREMENTS
+========================================================= */
+
+.requirements-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+}
+
+
+.requirement-item {
+    padding: 15px;
+
+    border: 1px solid #dce4e8;
+
+    background: #f8fafb;
+
+    border-radius: 8px;
+}
+
+
+.requirement-item span {
+    display: block;
+
+    color: #71828f;
+
+    font-size: 12px;
+
+    margin-bottom: 6px;
+}
+
+
+.requirement-item strong {
+    color: #183b56;
+
+    font-size: 17px;
+}
+
+
+.constraint-info-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 14px 16px;
+
+    margin-bottom: 16px;
+
+    background: #f0f3f5;
+
+    border-radius: 8px;
+
+    color: #506575;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   VALIDATE BUTTON
+========================================================= */
+
+.validate-button {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 12px 18px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #327a3c;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.validate-button:hover {
+    background: #286632;
+}
+
+
+.validate-button:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.validation-result {
+    border-color: #cfdcdf;
+}
+
+
+.result-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #e0e6e9;
+}
+
+
+.result-header h2 {
+    margin: 0 0 5px;
+
+    color: #183b56;
+
+    font-size: 20px;
+}
+
+
+.result-header p {
+    margin: 0;
+
+    color: #687b89;
+}
+
+
+.overall-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 13px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-feasible {
+    background: #e3f3e5;
+
+    color: #267239;
+}
+
+
+.status-infeasible {
+    background: #f9e3e3;
+
+    color: #a23e3e;
+}
+
+
+.status-partial {
+    background: #fff1d8;
+
+    color: #94620d;
+}
+
+
+.status-unknown {
+    background: #edf0f2;
+
+    color: #63737e;
+}
+
+
+/* =========================================================
+   CONSTRAINT RESULTS
+========================================================= */
+
+.constraint-results {
+    display: flex;
+
+    flex-direction: column;
+
+    margin-top: 16px;
+}
+
+
+.constraint-result-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #e7ecee;
+}
+
+
+.constraint-result-item:last-child {
+    border-bottom: none;
+}
+
+
+.constraint-result-left {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 11px;
+}
+
+
+.constraint-result-left > svg {
+    margin-top: 2px;
+
+    color: #627582;
+}
+
+
+.constraint-result-left strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #29465a;
+
+    font-size: 14px;
+}
+
+
+.constraint-result-left p {
+    margin: 0;
+
+    color: #6a7c88;
+
+    font-size: 13px;
+
+    line-height: 1.45;
+}
+
+
+.constraint-status {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+
+@keyframes spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   SIDEBAR RESPONSIVE ADJUSTMENT
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .constraint-page-main {
+        margin-left: 232px;
+        width: calc(100% - 232px);
+    }
+
+    .constraint-container {
+        padding: 25px 20px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .constraint-page-main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .constraint-container {
+        padding: 20px 15px;
+    }
+
+}

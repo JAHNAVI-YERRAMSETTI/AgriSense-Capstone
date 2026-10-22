@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
-
+import ConstraintValidation from "./pages/ConstraintValidation/ConstraintValidation";
 import FarmerProfile from "./pages/FarmerProfile/FarmerProfile";
 import Landing from "./pages/Landing/Landing";
 import Login from "./pages/Login/Login";
@@ -10,6 +10,7 @@ import MyFarms from "./pages/MyFarms/MyFarms";
 import FarmState from "./pages/FarmState/FarmState";
 import Predictions from "./pages/Predictions/Predictions";
 import ContextInterpretation from "./pages/ContextInterpretation/ContextInterpretation";
+import AgriculturalActions from "./pages/AgriculturalActions/AgriculturalActions";
 
 function ProtectedRoute({ children }) {
 
@@ -154,6 +155,26 @@ function App() {
                     </ProtectedRoute>
                 }
             />
+{/* =========================
+    Constraint / Feasibility Validation
+========================= */}
+
+<Route
+    path="/constraint-validation"
+    element={
+        <ProtectedRoute>
+            <ConstraintValidation />
+        </ProtectedRoute>
+    }
+/>
+<Route
+    path="/agricultural-actions"
+    element={
+        <ProtectedRoute>
+            <AgriculturalActions />
+        </ProtectedRoute>
+    }
+/>
 
 
             {/* =========================
@@ -169,6 +190,7 @@ function App() {
                     />
                 }
             />
+
 
         </Routes>
     );
