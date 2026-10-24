@@ -13,7 +13,7 @@ import {
 } from "../../services/farmerService";
 
 import "./FarmerProfile.css";
-
+import farmerField from "../../assets/farmer-field.jpg";
 function FarmerProfile() {
     const { farmer, setAuthenticatedFarmer } = useAuth();
     const { t } = useLanguage();
@@ -180,6 +180,21 @@ function FarmerProfile() {
                     <LanguageSelector />
                 </header>
 
+<section className="profile-hero">
+    <img
+        src={farmerField}
+        alt="Farmer working in a green agricultural field"
+        className="profile-hero-image"
+    />
+
+    <div className="profile-hero-overlay" />
+
+    <div className="profile-hero-content">
+        <span>AGRISENSE · FARMER PROFILE</span>
+        <h2>{t("farmerProfile")}</h2>
+        <p>{t("farmerProfileSubtitle")}</p>
+    </div>
+</section>
 
                 <section className="profile-card">
 

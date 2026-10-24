@@ -13,7 +13,9 @@ import {
     updateFarm,
     deleteFarm
 } from "../../services/farmService";
-
+import farmFields from "../../assets/farm-fields.jpg";
+import agricultureLandscape from "../../assets/agriculture-landscape.jpg";
+import farmerField from "../../assets/farmer-field.jpg";
 import "./MyFarms.css";
 
 function MyFarms() {
@@ -206,6 +208,19 @@ function MyFarms() {
 
                 </header>
 
+<section className="farms-hero">
+    <img
+        src={agricultureLandscape}
+        alt="Aerial view of agricultural fields"
+        className="farms-hero-image"
+    />
+    <div className="farms-hero-overlay" />
+    <div className="farms-hero-content">
+        <span>YOUR AGRICULTURAL SPACE</span>
+        <h2>{t("myFarms")}</h2>
+        <p>{t("myFarmsSubtitle")}</p>
+    </div>
+</section>
 
                 <section className="farms-content">
 
@@ -394,12 +409,22 @@ function MyFarms() {
 
                         <div className="farm-grid">
 
-                            {farms.map((farm) => (
+{farms.map((farm, index) => (
 
                                 <article
                                     className="farm-card"
                                     key={farm.id}
                                 >
+<div className="farm-card-image">
+    <img
+        src={farmFields}
+        alt="Agricultural fields"
+        loading="lazy"
+    />
+    <span className="farm-image-label">
+        {farm.crop || t("crop")}
+    </span>
+</div>
 
                                     <div className="farm-card-header">
 

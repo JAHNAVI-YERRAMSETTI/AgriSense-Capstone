@@ -17,6 +17,7 @@ import {
 } from "../../services/farmStateService";
 
 import "./FarmState.css";
+import farmFields from "../../assets/farm-fields.jpg";
 
 function FarmState() {
 
@@ -510,6 +511,22 @@ function FarmState() {
                     <LanguageSelector />
 
                 </header>
+
+                <section className="farm-state-hero">
+    <img
+        src={farmFields}
+        alt="Green agricultural fields"
+        className="farm-state-hero-image"
+    />
+
+    <div className="farm-state-hero-overlay" />
+
+    <div className="farm-state-hero-content">
+        <span>AGRISENSE · FIELD MONITORING</span>
+        <h2>{t("farmState")}</h2>
+        <p>{t("farmStateSubtitle")}</p>
+    </div>
+</section>
 
 
                 {/* No farms */}

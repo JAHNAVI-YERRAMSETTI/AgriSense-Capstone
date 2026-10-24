@@ -992,8 +992,44 @@ enterSourceReference:
 active:
     "सक्रिय",
 
-inactive:
-    "निष्क्रिय"
+
+    inactive:
+        "निष्क्रिय",
+
+    // Farm Risk Analysis
+    riskAnalysisTitle: "खेत जोखिम विश्लेषण",
+    riskAnalysisSubtitle: "चयनित खेत के मौजूदा संदर्भ डेटा से पहचाने गए जोखिमों की समीक्षा करें।",
+    riskAnalyzeButton: "खेत के जोखिमों का विश्लेषण करें",
+    riskAnalyzing: "खेत के जोखिमों का विश्लेषण हो रहा है...",
+    riskOverallStatus: "समग्र स्थिति",
+    riskLowMessage: "मौजूदा विश्लेषण नियमों के अनुसार कोई उच्च जोखिम स्तर नहीं पाया गया।",
+    riskMediumMessage: "एक या अधिक संदर्भ तत्वों की गंभीरता मध्यम है। दिए गए साक्ष्यों की समीक्षा करें।",
+    riskHighMessage: "एक या अधिक संदर्भ तत्वों की गंभीरता उच्च है। दिए गए साक्ष्यों की सावधानीपूर्वक समीक्षा करें।",
+    riskUnknownMessage: "पर्याप्त जानकारी उपलब्ध नहीं होने के कारण जोखिम की स्थिति अज्ञात है।",
+    riskNoElevatedRisks: "वर्तमान विश्लेषण नियमों के अनुसार कोई बढ़ा हुआ जोखिम नहीं पहचाना गया।",
+    riskNotValidatedNote: "यह आकलन मौजूदा संदर्भ विश्लेषण नियमों पर आधारित है। यह अलग से सत्यापित कृषि जोखिम पूर्वानुमान मॉडल नहीं है।",
+    riskCategory: "श्रेणी",
+    riskValue: "मान",
+    riskEvidence: "साक्ष्य",
+    riskItemStatus: "स्थिति",
+    riskIdentified: "पहचाना गया",
+    riskInsufficientData: "अपर्याप्त जानकारी",
+    riskLoadFailed: "खेत के जोखिमों का विश्लेषण नहीं किया जा सका।",
+    riskSelectFarm: "कृपया पहले एक खेत चुनें।",
+    
+    riskSeverityLow: "कम",
+    riskSeverityMedium: "मध्यम",
+    riskSeverityHigh: "उच्च",
+    riskSeverityUnknown: "अज्ञात",
+    riskCategoryDisease: "रोग",
+    riskStatusIdentified: "पहचाना गया",
+    riskStatusUnknown: "अज्ञात",
+riskDiseaseStatus: "रोग की स्थिति",
+riskValueSuspected: "संदिग्ध",
+riskValueConfirmed: "पुष्टि की गई",
+riskEvidenceSuspected: "रोग होने का संदेह है",
+riskEvidenceConfirmed: "रोग होने की पुष्टि हुई है",
+
 };
 
 export default hi;

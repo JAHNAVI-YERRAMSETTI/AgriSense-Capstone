@@ -203,3 +203,135 @@
         padding: 20px;
     }
 }
+/* Farmer profile page refinement */
+.profile-main {
+    box-sizing: border-box;
+    background:
+        radial-gradient(circle at 95% 0%, #e7f1e5 0, transparent 350px),
+        #f5f7f5;
+}
+
+.profile-header h1 {
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+/* Agricultural banner */
+.profile-hero {
+    position: relative;
+    min-height: 220px;
+    margin-bottom: 26px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: 18px;
+    background: #164b35;
+    box-shadow: 0 10px 26px rgba(16, 59, 43, 0.1);
+}
+
+.profile-hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+}
+
+.profile-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        90deg,
+        rgba(12, 49, 32, 0.91),
+        rgba(18, 63, 41, 0.7) 55%,
+        rgba(18, 63, 41, 0.12)
+    );
+}
+
+.profile-hero-content {
+    max-width: 560px;
+    padding: 30px 34px;
+    color: #ffffff;
+}
+
+.profile-hero-content > span {
+    display: inline-block;
+    padding: 6px 9px;
+    color: #e5f5e5;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+}
+
+.profile-hero-content h2 {
+    margin: 14px 0 8px;
+    color: #ffffff;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+}
+
+.profile-hero-content p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Profile card */
+.profile-card {
+    max-width: 900px;
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(24, 57, 37, 0.05);
+}
+
+.profile-avatar {
+    flex-shrink: 0;
+    border: 1px solid #d8e9d9;
+}
+
+.profile-form-group input {
+    border-radius: 9px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-form-group input:focus {
+    border-color: #2c8053;
+    box-shadow: 0 0 0 3px rgba(44, 128, 83, 0.1);
+}
+
+.profile-edit-button,
+.profile-save-button,
+.profile-cancel-button {
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.profile-edit-button:hover,
+.profile-save-button:hover {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 650px) {
+    .profile-hero {
+        min-height: 190px;
+    }
+
+    .profile-hero-content {
+        padding: 24px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .profile-form-group input,
+    .profile-edit-button,
+    .profile-save-button,
+    .profile-cancel-button {
+        transition: none;
+    }
+}

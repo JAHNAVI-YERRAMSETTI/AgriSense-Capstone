@@ -1003,6 +1003,43 @@ active:
 
 inactive:
     "నిష్క్రియం",
+
+    
+    // Farm Risk Analysis
+    riskAnalysisTitle: "పొలం ప్రమాదాల విశ్లేషణ",
+    riskAnalysisSubtitle: "ఎంచుకున్న పొలానికి సంబంధించిన ప్రస్తుత సమాచారంలో గుర్తించిన ప్రమాదాలను పరిశీలించండి.",
+    riskAnalyzeButton: "పొలం ప్రమాదాలను విశ్లేషించండి",
+    riskAnalyzing: "ప్రమాదాలను విశ్లేషిస్తోంది...",
+    riskOverallStatus: "మొత్తం స్థితి",
+    riskLowMessage: "ప్రస్తుత నియమాల ప్రకారం అధిక స్థాయి ప్రమాదాలు గుర్తించబడలేదు.",
+    riskMediumMessage: "ఒకటి లేదా అంతకంటే ఎక్కువ అంశాలకు MEDIUM తీవ్రత ఉంది. వివరించిన ఆధారాలను పరిశీలించండి.",
+    riskHighMessage: "ఒకటి లేదా అంతకంటే ఎక్కువ అంశాలకు HIGH తీవ్రత ఉంది. వివరించిన ఆధారాలను జాగ్రత్తగా పరిశీలించండి.",
+    riskUnknownMessage: "అందుబాటులో ఉన్న సమాచారం సరిపోకపోవడంతో ప్రమాద స్థితి UNKNOWNగా ఉంది.",
+    riskNoElevatedRisks: "ప్రస్తుత విశ్లేషణ నియమాల ప్రకారం అధిక స్థాయి ప్రమాదాలు గుర్తించబడలేదు.",
+    riskNotValidatedNote: "ఈ విశ్లేషణ ఇప్పటికే ఉన్న సందర్భ విశ్లేషణ నియమాల ఆధారంగా రూపొందించబడింది. ఇది ప్రత్యేకంగా ధృవీకరించబడిన వ్యవసాయ ప్రమాద అంచనా మోడల్ కాదు.",
+    riskCategory: "వర్గం",
+    riskValue: "విలువ",
+    riskEvidence: "ఆధారం",
+    riskItemStatus: "స్థితి",
+    riskIdentified: "గుర్తించబడింది",
+    riskInsufficientData: "సమాచారం సరిపోదు",
+    riskLoadFailed: "పొలం ప్రమాదాలను విశ్లేషించడం సాధ్యం కాలేదు.",
+    riskSelectFarm: "ముందుగా ఒక పొలాన్ని ఎంచుకోండి.",
+    
+    riskSeverityLow: "తక్కువ",
+    riskSeverityMedium: "మధ్యస్థం",
+    riskSeverityHigh: "అధికం",
+    riskSeverityUnknown: "తెలియదు",
+    riskCategoryDisease: "వ్యాధి",
+    riskStatusIdentified: "గుర్తించబడింది",
+    riskStatusUnknown: "తెలియదు",
+
+riskDiseaseStatus: "వ్యాధి స్థితి",
+riskValueSuspected: "అనుమానాస్పదం",
+riskValueConfirmed: "నిర్ధారించబడింది",
+riskEvidenceSuspected: "వ్యాధి ఉన్నట్లు అనుమానం ఉంది",
+riskEvidenceConfirmed: "వ్యాధి ఉన్నట్లు నిర్ధారించబడింది",
+
 };
 
 export default te;
