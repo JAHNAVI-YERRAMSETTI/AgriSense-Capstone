@@ -1,9 +1,11 @@
+
 package com.agrisense.backend.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.agrisense.backend.dto.ConstraintResult;
 import com.agrisense.backend.dto.ConstraintValidationRequest;
@@ -20,9 +22,7 @@ public class ConstraintValidationServiceImpl
         implements ConstraintValidationService {
 
     private final FarmRepository farmRepository;
-
     private final FarmStateRepository farmStateRepository;
-
     private final AgriculturalActionRepository agriculturalActionRepository;
 
     public ConstraintValidationServiceImpl(
@@ -32,317 +32,376 @@ public class ConstraintValidationServiceImpl
 
         this.farmRepository = farmRepository;
         this.farmStateRepository = farmStateRepository;
-        this.agriculturalActionRepository =
-                agriculturalActionRepository;
+        this.agriculturalActionRepository = agriculturalActionRepository;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ConstraintValidationResponse validateAction(
             ConstraintValidationRequest request) {
 
-        /*
-         * =========================
-         * Validate Request
-         * =========================
-         */
+        // 1. Validate the request.
+        if (request == null
+                || request.getFarmId() == null
+                || request.getActionId() == null) {
 
-        if (request == null ||
-                request.getFarmId() == null ||
-                request.getActionId() == null) {
-
-            return new ConstraintValidationResponse(
-                    false,
-                    "Farm ID and Action ID are required.",
-                    request != null
-                            ? request.getFarmId()
-                            : null,
-                    null,
-                    "UNKNOWN",
-                    new ArrayList<>()
-            );
+            return failureResponse(
+                    request != null ? request.getFarmId() : null,
+                    "Farm ID and Action ID are required.");
         }
 
-        /*
-         * =========================
-         * Find Farm
-         * =========================
-         */
-
+        // 2. Find the farm.
         Farm farm = farmRepository
                 .findById(request.getFarmId())
                 .orElse(null);
 
         if (farm == null) {
-
-            return new ConstraintValidationResponse(
-                    false,
-                    "Farm not found.",
+            return failureResponse(
                     request.getFarmId(),
-                    null,
-                    "UNKNOWN",
-                    new ArrayList<>()
-            );
+                    "Farm not found.");
         }
 
-        /*
-         * =========================
-         * Find Farm State
-         * =========================
-         */
-
+        // 3. Find the latest stored farm state.
         FarmState farmState = farmStateRepository
                 .findByFarm(farm)
                 .orElse(null);
 
         if (farmState == null) {
-
-            return new ConstraintValidationResponse(
-                    false,
-                    "Farm state not found.",
+            return failureResponse(
                     farm.getId(),
-                    null,
-                    "UNKNOWN",
-                    new ArrayList<>()
-            );
+                    "Farm state not found. Update the farm state before validation.");
         }
 
-        /*
-         * =========================
-         * Find Agricultural Action
-         * =========================
-         */
-
-        AgriculturalAction action =
-                agriculturalActionRepository
-                        .findById(request.getActionId())
-                        .orElse(null);
+        // 4. Find the agricultural action.
+        AgriculturalAction action = agriculturalActionRepository
+                .findById(request.getActionId())
+                .orElse(null);
 
         if (action == null) {
-
-            return new ConstraintValidationResponse(
-                    false,
-                    "Agricultural action not found.",
+            return failureResponse(
                     farm.getId(),
-                    null,
-                    "UNKNOWN",
-                    new ArrayList<>()
-            );
+                    "Agricultural action not found.");
         }
 
-        /*
-         * =========================
-         * Validate Action Applicability
-         * =========================
-         */
+        // 5. Do not validate inactive actions.
+        if (!Boolean.TRUE.equals(action.getActive())) {
+            return failureResponse(
+                    farm.getId(),
+                    "This agricultural action is inactive and cannot be validated.");
+        }
 
-        List<ConstraintResult> constraints =
-                new ArrayList<>();
+        List<ConstraintResult> constraints = new ArrayList<>();
 
-        /*
-         * =========================
-         * WATER
-         * =========================
-         */
+        // 6. Validate crop and growth-stage applicability independently.
+        validateCropApplicability(action, farmState, constraints);
+        validateGrowthStageApplicability(action, farmState, constraints);
 
-        if (action.getRequiredWater() == null) {
+        // 7. Validate resource requirements.
+        validateWater(action, farmState, constraints);
+        validateLabour(action, farmState, constraints);
+        validateBudget(action, farmState, constraints);
 
-            constraints.add(
-                    new ConstraintResult(
-                            "WATER",
-                            "UNKNOWN",
-                            "Water requirement is not available for this action."
-                    )
-            );
+        // 8. Determine the overall result.
+        String overallStatus = determineOverallStatus(constraints);
 
-        } else if (farmState.getWaterAvailable() == null) {
+        String message;
 
-            constraints.add(
-                    new ConstraintResult(
-                            "WATER",
-                            "UNKNOWN",
-                            "Current farm water availability is not available."
-                    )
-            );
-
-        } else if (farmState.getWaterAvailable()
-                >= action.getRequiredWater()) {
-
-            constraints.add(
-                    new ConstraintResult(
-                            "WATER",
-                            "FEASIBLE",
-                            "Available water is sufficient."
-                    )
-            );
-
+        if ("FEASIBLE".equals(overallStatus)) {
+            message = "All applicability and resource checks passed.";
+        } else if ("INFEASIBLE".equals(overallStatus)) {
+            message = "One or more constraints are not satisfied.";
         } else {
-
-            constraints.add(
-                    new ConstraintResult(
-                            "WATER",
-                            "INFEASIBLE",
-                            "Available water is insufficient."
-                    )
-            );
+            message = "Validation is incomplete because some information is unavailable.";
         }
-
-        /*
-         * =========================
-         * LABOUR
-         * =========================
-         */
-
-        if (action.getRequiredLabour() == null) {
-
-            constraints.add(
-                    new ConstraintResult(
-                            "LABOUR",
-                            "UNKNOWN",
-                            "Labour requirement is not available for this action."
-                    )
-            );
-
-        } else if (farmState.getLabourAvailable() == null) {
-
-            constraints.add(
-                    new ConstraintResult(
-                            "LABOUR",
-                            "UNKNOWN",
-                            "Current farm labour availability is not available."
-                    )
-            );
-
-        } else if (farmState.getLabourAvailable()
-                >= action.getRequiredLabour()) {
-
-            constraints.add(
-                    new ConstraintResult(
-                            "LABOUR",
-                            "FEASIBLE",
-                            "Available labour is sufficient."
-                    )
-            );
-
-        } else {
-
-            constraints.add(
-                    new ConstraintResult(
-                            "LABOUR",
-                            "INFEASIBLE",
-                            "Available labour is insufficient."
-                    )
-            );
-        }
-
-        /*
-         * =========================
-         * BUDGET
-         * =========================
-         */
-
-        if (action.getRequiredBudget() == null) {
-
-            constraints.add(
-                    new ConstraintResult(
-                            "BUDGET",
-                            "UNKNOWN",
-                            "Budget requirement is not available for this action."
-                    )
-            );
-
-        } else if (farmState.getBudgetAvailable() == null) {
-
-            constraints.add(
-                    new ConstraintResult(
-                            "BUDGET",
-                            "UNKNOWN",
-                            "Current farm budget availability is not available."
-                    )
-            );
-
-        } else if (farmState.getBudgetAvailable()
-                >= action.getRequiredBudget()) {
-
-            constraints.add(
-                    new ConstraintResult(
-                            "BUDGET",
-                            "FEASIBLE",
-                            "Available budget is sufficient."
-                    )
-            );
-
-        } else {
-
-            constraints.add(
-                    new ConstraintResult(
-                            "BUDGET",
-                            "INFEASIBLE",
-                            "Available budget is insufficient."
-                    )
-            );
-        }
-
-        /*
-         * =========================
-         * Overall Status
-         * =========================
-         */
-
-        boolean hasInfeasible = false;
-        boolean hasUnknown = false;
-        boolean hasFeasible = false;
-
-        for (ConstraintResult constraint : constraints) {
-
-            if ("INFEASIBLE".equals(
-                    constraint.getStatus())) {
-
-                hasInfeasible = true;
-
-            } else if ("UNKNOWN".equals(
-                    constraint.getStatus())) {
-
-                hasUnknown = true;
-
-            } else if ("FEASIBLE".equals(
-                    constraint.getStatus())) {
-
-                hasFeasible = true;
-            }
-        }
-
-        String overallStatus;
-
-        if (hasInfeasible) {
-
-            overallStatus = "INFEASIBLE";
-
-        } else if (hasUnknown && hasFeasible) {
-
-            overallStatus = "PARTIALLY_FEASIBLE";
-
-        } else if (hasUnknown) {
-
-            overallStatus = "UNKNOWN";
-
-        } else {
-
-            overallStatus = "FEASIBLE";
-        }
-
-        /*
-         * =========================
-         * Final Response
-         * =========================
-         */
 
         return new ConstraintValidationResponse(
                 true,
-                "Constraint validation completed successfully.",
+                message,
                 farm.getId(),
                 action.getActionName(),
                 overallStatus,
-                constraints
-        );
+                constraints);
+    }
+
+    private void validateCropApplicability(
+            AgriculturalAction action,
+            FarmState farmState,
+            List<ConstraintResult> constraints) {
+
+        String requiredCrop = normalize(action.getApplicableCrop());
+        String currentCrop = normalize(farmState.getCrop());
+
+        if (requiredCrop == null) {
+            constraints.add(new ConstraintResult(
+                    "CROP_APPLICABILITY",
+                    "UNKNOWN",
+                    "The action's applicable crop is not specified."));
+            return;
+        }
+
+        if (currentCrop == null) {
+            constraints.add(new ConstraintResult(
+                    "CROP_APPLICABILITY",
+                    "UNKNOWN",
+                    "The farm's current crop is not available."));
+            return;
+        }
+
+        if (requiredCrop.equalsIgnoreCase(currentCrop)) {
+            constraints.add(new ConstraintResult(
+                    "CROP_APPLICABILITY",
+                    "FEASIBLE",
+                    "The action matches the farm's current crop."));
+        } else {
+            constraints.add(new ConstraintResult(
+                    "CROP_APPLICABILITY",
+                    "INFEASIBLE",
+                    "This action is intended for " + requiredCrop
+                            + ", but the farm currently has " + currentCrop + "."));
+        }
+    }
+
+    private void validateGrowthStageApplicability(
+            AgriculturalAction action,
+            FarmState farmState,
+            List<ConstraintResult> constraints) {
+
+        String requiredStage = normalize(action.getApplicableGrowthStage());
+        String currentStage = normalize(farmState.getGrowthStage());
+
+        if (requiredStage == null) {
+            constraints.add(new ConstraintResult(
+                    "GROWTH_STAGE_APPLICABILITY",
+                    "UNKNOWN",
+                    "The action's applicable growth stage is not specified."));
+            return;
+        }
+
+        if (currentStage == null) {
+            constraints.add(new ConstraintResult(
+                    "GROWTH_STAGE_APPLICABILITY",
+                    "UNKNOWN",
+                    "The farm's current growth stage is not available."));
+            return;
+        }
+
+        if (requiredStage.equalsIgnoreCase(currentStage)) {
+            constraints.add(new ConstraintResult(
+                    "GROWTH_STAGE_APPLICABILITY",
+                    "FEASIBLE",
+                    "The action matches the farm's current growth stage."));
+        } else {
+            constraints.add(new ConstraintResult(
+                    "GROWTH_STAGE_APPLICABILITY",
+                    "INFEASIBLE",
+                    "This action is intended for growth stage "
+                            + requiredStage + ", but the farm is at "
+                            + currentStage + "."));
+        }
+    }
+
+    private void validateWater(
+            AgriculturalAction action,
+            FarmState farmState,
+            List<ConstraintResult> constraints) {
+
+        Double required = action.getRequiredWater();
+        Double available = farmState.getWaterAvailable();
+
+        if (required != null && !isValidRequirement(required)) {
+            constraints.add(new ConstraintResult(
+                    "WATER",
+                    "UNKNOWN",
+                    "The stored water requirement is invalid. Correct the action data."));
+            return;
+        }
+
+        if (required == null) {
+            constraints.add(new ConstraintResult(
+                    "WATER",
+                    "UNKNOWN",
+                    "Water requirement is not available for this action."));
+            return;
+        }
+
+        if (available == null) {
+            constraints.add(new ConstraintResult(
+                    "WATER",
+                    "UNKNOWN",
+                    "Current farm water availability is not available."));
+            return;
+        }
+
+        if (!Double.isFinite(available) || available < 0) {
+            constraints.add(new ConstraintResult(
+                    "WATER",
+                    "UNKNOWN",
+                    "Stored farm water availability is invalid."));
+            return;
+        }
+
+        if (available >= required) {
+            constraints.add(new ConstraintResult(
+                    "WATER",
+                    "FEASIBLE",
+                    "Available water meets the action requirement."));
+        } else {
+            constraints.add(new ConstraintResult(
+                    "WATER",
+                    "INFEASIBLE",
+                    "Insufficient water. Required: " + required
+                            + "; available: " + available + "."));
+        }
+    }
+
+    private void validateLabour(
+            AgriculturalAction action,
+            FarmState farmState,
+            List<ConstraintResult> constraints) {
+
+        Integer required = action.getRequiredLabour();
+        Integer available = farmState.getLabourAvailable();
+
+        if (required != null && required < 0) {
+            constraints.add(new ConstraintResult(
+                    "LABOUR",
+                    "UNKNOWN",
+                    "The stored labour requirement is invalid. Correct the action data."));
+            return;
+        }
+
+        if (required == null) {
+            constraints.add(new ConstraintResult(
+                    "LABOUR",
+                    "UNKNOWN",
+                    "Labour requirement is not available for this action."));
+            return;
+        }
+
+        if (available == null) {
+            constraints.add(new ConstraintResult(
+                    "LABOUR",
+                    "UNKNOWN",
+                    "Current farm labour availability is not available."));
+            return;
+        }
+
+        if (available < 0) {
+            constraints.add(new ConstraintResult(
+                    "LABOUR",
+                    "UNKNOWN",
+                    "Stored farm labour availability is invalid."));
+            return;
+        }
+
+        if (available >= required) {
+            constraints.add(new ConstraintResult(
+                    "LABOUR",
+                    "FEASIBLE",
+                    "Available labour meets the action requirement."));
+        } else {
+            constraints.add(new ConstraintResult(
+                    "LABOUR",
+                    "INFEASIBLE",
+                    "Insufficient labour. Required: " + required
+                            + "; available: " + available + "."));
+        }
+    }
+
+    private void validateBudget(
+            AgriculturalAction action,
+            FarmState farmState,
+            List<ConstraintResult> constraints) {
+
+        Double required = action.getRequiredBudget();
+        Double available = farmState.getBudgetAvailable();
+
+        if (required != null && !isValidRequirement(required)) {
+            constraints.add(new ConstraintResult(
+                    "BUDGET",
+                    "UNKNOWN",
+                    "The stored budget requirement is invalid. Correct the action data."));
+            return;
+        }
+
+        if (required == null) {
+            constraints.add(new ConstraintResult(
+                    "BUDGET",
+                    "UNKNOWN",
+                    "Budget requirement is not available for this action."));
+            return;
+        }
+
+        if (available == null) {
+            constraints.add(new ConstraintResult(
+                    "BUDGET",
+                    "UNKNOWN",
+                    "Current farm budget availability is not available."));
+            return;
+        }
+
+        if (!Double.isFinite(available) || available < 0) {
+            constraints.add(new ConstraintResult(
+                    "BUDGET",
+                    "UNKNOWN",
+                    "Stored farm budget availability is invalid."));
+            return;
+        }
+
+        if (available >= required) {
+            constraints.add(new ConstraintResult(
+                    "BUDGET",
+                    "FEASIBLE",
+                    "Available budget meets the action requirement."));
+        } else {
+            constraints.add(new ConstraintResult(
+                    "BUDGET",
+                    "INFEASIBLE",
+                    "Insufficient budget. Required: " + required
+                            + "; available: " + available + "."));
+        }
+    }
+
+    private boolean isValidRequirement(Double value) {
+        return Double.isFinite(value) && value >= 0;
+    }
+
+    private String normalize(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return null;
+        }
+        return value.trim();
+    }
+
+    private String determineOverallStatus(
+            List<ConstraintResult> constraints) {
+
+        boolean hasUnknown = false;
+
+        for (ConstraintResult constraint : constraints) {
+            if ("INFEASIBLE".equalsIgnoreCase(constraint.getStatus())) {
+                // A confirmed violation takes precedence over unknown checks.
+                return "INFEASIBLE";
+            }
+
+            if (!"FEASIBLE".equalsIgnoreCase(constraint.getStatus())) {
+                hasUnknown = true;
+            }
+        }
+
+        return hasUnknown ? "UNKNOWN" : "FEASIBLE";
+    }
+
+    private ConstraintValidationResponse failureResponse(
+            Long farmId,
+            String message) {
+
+        return new ConstraintValidationResponse(
+                false,
+                message,
+                farmId,
+                null,
+                "UNKNOWN",
+                new ArrayList<>());
     }
 }

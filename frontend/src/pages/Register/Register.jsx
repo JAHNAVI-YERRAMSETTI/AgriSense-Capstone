@@ -52,19 +52,13 @@ function Register() {
             const data = await registerFarmer(formData);
 
             if (!data.success) {
-                throw new Error(
-                    data.message || "Registration failed"
-                );
+                throw new Error(data.message || "Registration failed");
             }
 
-            // Store newly registered farmer in AuthContext
             setAuthenticatedFarmer(data);
 
             toast.success(t("registrationSuccessful"));
-
-            // Go directly to dashboard
             navigate("/dashboard");
-
         } catch (error) {
             const message =
                 error.response?.data?.message ||
@@ -72,7 +66,6 @@ function Register() {
                 "Registration failed";
 
             toast.error(message);
-
         } finally {
             setLoading(false);
         }
@@ -81,190 +74,222 @@ function Register() {
     return (
         <div className="register-page">
 
-            {/* Top Navigation */}
-            <div className="register-top-navigation">
-
+            <header className="register-top-navigation">
                 <button
                     type="button"
                     className="register-home-button"
                     onClick={() => navigate("/")}
                 >
-                    <span className="register-home-logo">
+                    <span className="register-home-logo" aria-hidden="true">
                         🌱
                     </span>
-
-                    <span>
-                        AgriSense
-                    </span>
+                    <span>AgriSense</span>
                 </button>
 
                 <LanguageSelector />
+            </header>
 
-            </div>
+            <main className="register-layout">
 
+                {/* Left: Agricultural branding */}
+                <section className="register-visual-panel">
+                    <div className="register-visual-overlay" />
 
-            <div className="register-card">
+                    <div className="register-visual-content">
+                        <span className="register-visual-badge">
+                            🌿 &nbsp; Growing Together
+                        </span>
 
-                <div className="register-logo">
-                    🌱
-                </div>
+                        <h1>
+                            Join the Future
+                            <br />
+                            <span>of Farming.</span>
+                        </h1>
 
-                <h1>
-                    {t("appName")}
-                </h1>
+                        <p>
+                            Create your AgriSense account to explore
+                            agricultural predictions, understand your
+                            farm conditions, and plan smarter farming
+                            decisions throughout your crop lifecycle.
+                        </p>
 
-                <p className="register-subtitle">
-                    {t("appSubtitle")}
-                </p>
+                        <div className="register-visual-divider" />
 
-                <h2>
-                    {t("farmerRegistration")}
-                </h2>
+                        <div className="register-visual-footer">
+                            <span aria-hidden="true">🌱</span>
 
-
-                <form onSubmit={handleRegister}>
-
-                    {/* Name */}
-                    <div className="register-form-group">
-
-                        <label htmlFor="name">
-                            {t("name")} *
-                        </label>
-
-                        <input
-                            id="name"
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            placeholder={t("name")}
-                            autoComplete="name"
-                            disabled={loading}
-                        />
-
+                            <div>
+                                <strong>AgriSense</strong>
+                                <p>
+                                    Adaptive Agricultural Decision
+                                    Support System
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
+                    <div className="register-image-caption">
+                        Growing a smarter, more sustainable future.
+                    </div>
+                </section>
 
-                    {/* Email */}
-                    <div className="register-form-group">
+                {/* Right: Registration form */}
+                <section className="register-form-panel">
+                    <div className="register-card">
 
-                        <label htmlFor="email">
-                            {t("email")} *
-                        </label>
+                        <div className="register-logo" aria-hidden="true">
+                            🌱
+                        </div>
 
-                        <input
-                            id="email"
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder={t("enterEmail")}
-                            autoComplete="email"
-                            disabled={loading}
-                        />
+                        <h1 className="register-brand-title">
+                            {t("appName")}
+                        </h1>
+
+                        <p className="register-subtitle">
+                            {t("appSubtitle")}
+                        </p>
+
+                        <div className="register-heading">
+                            <h2>{t("farmerRegistration")}</h2>
+                            <p>
+                                Create your account to get started.
+                            </p>
+                        </div>
+
+                        <form onSubmit={handleRegister}>
+
+                            <div className="register-form-group">
+                                <label htmlFor="name">
+                                    {t("name")} *
+                                </label>
+
+                                <input
+                                    id="name"
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    placeholder={t("name")}
+                                    autoComplete="name"
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            <div className="register-form-group">
+                                <label htmlFor="email">
+                                    {t("email")} *
+                                </label>
+
+                                <input
+                                    id="email"
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder={t("enterEmail")}
+                                    autoComplete="email"
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            <div className="register-form-group">
+                                <label htmlFor="password">
+                                    {t("password")} *
+                                </label>
+
+                                <input
+                                    id="password"
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    placeholder={t("enterPassword")}
+                                    autoComplete="new-password"
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            <div className="register-form-group">
+                                <label htmlFor="phone">
+                                    {t("phone")}
+                                </label>
+
+                                <input
+                                    id="phone"
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    placeholder={t("phone")}
+                                    autoComplete="tel"
+                                    disabled={loading}
+                                />
+                            </div>
+
+                            <div className="register-form-group">
+                                <label htmlFor="location">
+                                    {t("location")}
+                                </label>
+
+                                <input
+                                    id="location"
+                                    type="text"
+                                    name="location"
+                                    value={formData.location}
+                                    onChange={handleChange}
+                                    placeholder={t("location")}
+                                    autoComplete="address-level2"
+                                    disabled={loading}
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="register-button"
+                                disabled={loading}
+                            >
+                                {loading
+                                    ? t("creatingAccount")
+                                    : t("createAccount")}
+
+                                {!loading && (
+                                    <span aria-hidden="true"> →</span>
+                                )}
+                            </button>
+                        </form>
+
+                        <p className="register-login-text">
+                            {t("alreadyHaveAccount")}{" "}
+
+                            <button
+                                type="button"
+                                className="register-login-link"
+                                onClick={() => navigate("/login")}
+                            >
+                                {t("login")}
+                            </button>
+                        </p>
+
+                        <button
+                            type="button"
+                            className="register-back-home"
+                            onClick={() => navigate("/")}
+                        >
+                            ← Back to Home
+                        </button>
+
+                        <div className="register-security-note">
+                            <span aria-hidden="true">🌿</span>
+                            Built for smarter farming decisions
+                        </div>
 
                     </div>
+                </section>
 
-
-                    {/* Password */}
-                    <div className="register-form-group">
-
-                        <label htmlFor="password">
-                            {t("password")} *
-                        </label>
-
-                        <input
-                            id="password"
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            placeholder={t("enterPassword")}
-                            autoComplete="new-password"
-                            disabled={loading}
-                        />
-
-                    </div>
-
-
-                    {/* Phone */}
-                    <div className="register-form-group">
-
-                        <label htmlFor="phone">
-                            {t("phone")}
-                        </label>
-
-                        <input
-                            id="phone"
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            placeholder={t("phone")}
-                            autoComplete="tel"
-                            disabled={loading}
-                        />
-
-                    </div>
-
-
-                    {/* Location */}
-                    <div className="register-form-group">
-
-                        <label htmlFor="location">
-                            {t("location")}
-                        </label>
-
-                        <input
-                            id="location"
-                            type="text"
-                            name="location"
-                            value={formData.location}
-                            onChange={handleChange}
-                            placeholder={t("location")}
-                            disabled={loading}
-                        />
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        className="register-button"
-                        disabled={loading}
-                    >
-                        {loading
-                            ? t("creatingAccount")
-                            : t("createAccount")}
-                    </button>
-
-                </form>
-
-
-                <p className="register-login-text">
-
-                    {t("alreadyHaveAccount")}{" "}
-
-                    <span
-                        onClick={() => navigate("/login")}
-                    >
-                        {t("login")}
-                    </span>
-
-                </p>
-
-
-                {/* Back to Home */}
-                <button
-                    type="button"
-                    className="register-back-home"
-                    onClick={() => navigate("/")}
-                >
-                    ← Back to Home
-                </button>
-
-            </div>
-
+            </main>
         </div>
     );
 }

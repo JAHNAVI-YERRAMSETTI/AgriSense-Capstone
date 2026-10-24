@@ -1,26 +1,31 @@
+# ==============================
 # Python virtual environments
+# ==============================
 **/.venv/
 **/venv/
 
+# ==============================
 # Python cache
+# ==============================
 **/__pycache__/
-*.pyc
+*.py[cod]
 
-# ML datasets / downloaded archives
+# ==============================
+# ML datasets and downloaded archives
+# ==============================
 ml/disease-detection/dataset/
 ml/**/data/
 ml/**/*.zip
 
-# Generated/trained ML models
-ml/**/*.pkl
-ml/**/*.pth
-ml/**/*.joblib
-
+# ==============================
 # Large generated training CSVs
+# ==============================
 ml/yield-prediction/yield_training_data.csv
 ml/yield-prediction/yield_long_format.csv
 
+# ==============================
 # Eclipse / Spring Tool Suite
+# ==============================
 .metadata/
 **/.metadata/
 .settings/
@@ -29,7 +34,9 @@ ml/yield-prediction/yield_long_format.csv
 .project
 .factorypath
 
+# ==============================
 # ML datasets
+# ==============================
 ml/crop-recommendation/Crop_recommendation.csv
 ml/yield-prediction/dld_yield_complete.csv
 ml/yield-prediction/yield_outlier_audit.csv
@@ -37,5 +44,49 @@ ml/yield-prediction/yield_test.csv
 ml/yield-prediction/yield_train.csv
 ml/yield-prediction/yield_validation.csv
 
-# Frontend environment
+# ==============================
+# Frontend environment variables
+# ==============================
 frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# ==============================
+# Frontend dependencies and build output
+# ==============================
+frontend/node_modules/
+frontend/dist/
+
+# ==============================
+# Java build output
+# ==============================
+**/target/
+
+# ==============================
+# Environment and secrets
+# ==============================
+.env
+.env.*
+!.env.example
+
+# ==============================
+# IDE and operating system files
+# ==============================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+### Next steps
+
+**1. Save the file** as `.gitignore` in your project root:
+`D:\Documents\CAPSTONE_PROJECT-01\.gitignore`
+
+**2. Add the two trained models to Git LFS:**
+
+```powershell
+git add .gitignore .gitattributes
+
+git add ml/crop-recommendation/crop_recommendation_model.joblib
+git add ml/disease-detection/disease_model.pth

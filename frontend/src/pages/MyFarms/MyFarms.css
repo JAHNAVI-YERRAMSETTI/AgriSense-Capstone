@@ -300,3 +300,176 @@
         padding: 20px;
     }
 }
+/* Agricultural banner */
+.farms-main {
+    box-sizing: border-box;
+    background:
+        radial-gradient(circle at 95% 0%, #e7f1e5 0, transparent 350px),
+        #f5f7f5;
+}
+
+.farms-header h1 {
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.farms-hero {
+    position: relative;
+    min-height: 205px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: 18px;
+    background: #164b35;
+    box-shadow: 0 10px 26px rgba(16, 59, 43, 0.12);
+}
+
+.farms-hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+}
+
+.farms-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        90deg,
+        rgba(12, 49, 32, 0.9),
+        rgba(18, 63, 41, 0.62) 58%,
+        rgba(18, 63, 41, 0.12)
+    );
+}
+
+.farms-hero-content {
+    max-width: 560px;
+    padding: 30px 34px;
+    color: white;
+}
+
+.farms-hero-content > span {
+    display: inline-block;
+    padding: 6px 9px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #e5f5e5;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.farms-hero-content h2 {
+    margin: 13px 0 7px;
+    color: white;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+}
+
+.farms-hero-content p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Farm cards */
+.farm-grid {
+    gap: 22px;
+}
+
+.farm-card {
+    padding: 0;
+    overflow: hidden;
+    border-color: #e0e8df;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px rgba(24, 57, 37, 0.045);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.farm-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(24, 57, 37, 0.09);
+}
+
+.farm-card-image {
+    position: relative;
+    height: 165px;
+    overflow: hidden;
+    background: #e6efe4;
+}
+
+.farm-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.farm-card:hover .farm-card-image img {
+    transform: scale(1.035);
+}
+
+.farm-image-label {
+    position: absolute;
+    left: 13px;
+    bottom: 12px;
+    max-width: calc(100% - 26px);
+    overflow: hidden;
+    padding: 6px 10px;
+    color: white;
+    background: rgba(15, 54, 35, 0.82);
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.farm-card-header {
+    margin: 0 20px;
+    padding: 19px 0;
+}
+
+.farm-details {
+    padding: 18px 20px;
+}
+
+.farm-card-actions {
+    margin: 0 20px;
+    padding: 15px 0 19px;
+}
+
+.farm-form-card,
+.farms-empty {
+    box-shadow: 0 5px 18px rgba(24, 57, 37, 0.04);
+}
+
+@media (max-width: 650px) {
+    .farms-hero {
+        min-height: 190px;
+    }
+
+    .farms-hero-content {
+        padding: 24px 20px;
+    }
+
+    .farm-card-image {
+        height: 150px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .farm-card,
+    .farm-card-image img {
+        transition: none;
+    }
+}

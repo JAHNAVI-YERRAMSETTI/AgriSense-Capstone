@@ -32,9 +32,7 @@ function Login() {
             await login(email, password);
 
             toast.success(t("loginSuccessful"));
-
             navigate("/dashboard");
-
         } catch (error) {
             const message =
                 error.response?.data?.message ||
@@ -42,7 +40,6 @@ function Login() {
                 t("invalidCredentials");
 
             toast.error(message);
-
         } finally {
             setLoading(false);
         }
@@ -51,9 +48,8 @@ function Login() {
     return (
         <div className="login-page">
 
-            {/* Top Navigation */}
-            <div className="login-top-navigation">
-
+            {/* Top navigation */}
+            <header className="login-top-navigation">
                 <button
                     type="button"
                     className="login-home-button"
@@ -62,119 +58,161 @@ function Login() {
                     <span className="login-home-logo">
                         🌱
                     </span>
-
-                    <span>
-                        AgriSense
-                    </span>
+                    <span>AgriSense</span>
                 </button>
 
                 <LanguageSelector />
+            </header>
 
-            </div>
+            <main className="login-layout">
 
+                {/* Left: Agricultural branding */}
+                <section className="login-visual-panel">
+                    <div className="login-visual-overlay" />
 
-            <div className="login-card">
+                    <div className="login-visual-content">
+                        <span className="login-visual-badge">
+                            🌿 Intelligent Agriculture
+                        </span>
 
-                <div className="login-logo">
-                    🌱
-                </div>
+                        <h1>
+                            Smarter Decisions.
+                            <br />
+                            <span>Better Farming.</span>
+                        </h1>
 
-                <h1>
-                    {t("appName")}
-                </h1>
+                        <p>
+                            Understand your farm conditions,
+                            explore agricultural predictions,
+                            and make informed decisions throughout
+                            your crop lifecycle.
+                        </p>
 
-                <p className="login-subtitle">
-                    {t("appSubtitle")}
-                </p>
+                        <div className="login-visual-divider" />
 
-                <h2>
-                    {t("farmerLogin")}
-                </h2>
-
-
-                <form onSubmit={handleLogin}>
-
-                    <div className="login-form-group">
-
-                        <label htmlFor="email">
-                            {t("email")}
-                        </label>
-
-                        <input
-                            id="email"
-                            type="email"
-                            value={email}
-                            onChange={(event) =>
-                                setEmail(event.target.value)
-                            }
-                            placeholder={t("enterEmail")}
-                            autoComplete="email"
-                            disabled={loading}
-                        />
-
+                        <div className="login-visual-footer">
+                            <span>🌱</span>
+                            <div>
+                                <strong>AgriSense</strong>
+                                <p>
+                                    Adaptive Agricultural Decision
+                                    Support System
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
+                    <div className="login-image-caption">
+                        Growing a smarter, more sustainable future.
+                    </div>
+                </section>
 
-                    <div className="login-form-group">
+                {/* Right: Login form */}
+                <section className="login-form-panel">
+                    <div className="login-card">
 
-                        <label htmlFor="password">
-                            {t("password")}
-                        </label>
+                        <div className="login-logo">
+                            🌱
+                        </div>
 
-                        <input
-                            id="password"
-                            type="password"
-                            value={password}
-                            onChange={(event) =>
-                                setPassword(event.target.value)
-                            }
-                            placeholder={t("enterPassword")}
-                            autoComplete="current-password"
-                            disabled={loading}
-                        />
+                        <h2 className="login-brand-title">
+                            {t("appName")}
+                        </h2>
+
+                        <p className="login-subtitle">
+                            {t("appSubtitle")}
+                        </p>
+
+                        <div className="login-heading">
+                            <h3>{t("farmerLogin")}</h3>
+                            <p>
+                                Welcome back! Please enter your details.
+                            </p>
+                        </div>
+
+                        <form onSubmit={handleLogin}>
+
+                            <div className="login-form-group">
+                                <label htmlFor="email">
+                                    {t("email")}
+                                </label>
+
+                                <input
+                                    id="email"
+                                    type="email"
+                                    value={email}
+                                    onChange={(event) =>
+                                        setEmail(event.target.value)
+                                    }
+                                    placeholder={t("enterEmail")}
+                                    autoComplete="email"
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            <div className="login-form-group">
+                                <label htmlFor="password">
+                                    {t("password")}
+                                </label>
+
+                                <input
+                                    id="password"
+                                    type="password"
+                                    value={password}
+                                    onChange={(event) =>
+                                        setPassword(event.target.value)
+                                    }
+                                    placeholder={t("enterPassword")}
+                                    autoComplete="current-password"
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="login-button"
+                                disabled={loading}
+                            >
+                                {loading
+                                    ? t("loggingIn")
+                                    : t("login")}
+                                {!loading && (
+                                    <span aria-hidden="true"> →</span>
+                                )}
+                            </button>
+                        </form>
+
+                        <p className="login-register-text">
+                            {t("noAccount")}{" "}
+
+                            <button
+                                type="button"
+                                className="login-register-link"
+                                onClick={() => navigate("/register")}
+                            >
+                                {t("register")}
+                            </button>
+                        </p>
+
+                        <button
+                            type="button"
+                            className="login-back-home"
+                            onClick={() => navigate("/")}
+                        >
+                            ← Back to Home
+                        </button>
+
+                        <div className="login-security-note">
+                            <span aria-hidden="true">🌿</span>
+                            Built for smarter farming decisions
+                        </div>
 
                     </div>
+                </section>
 
-
-                    <button
-                        type="submit"
-                        className="login-button"
-                        disabled={loading}
-                    >
-                        {loading
-                            ? t("loggingIn")
-                            : t("login")}
-                    </button>
-
-                </form>
-
-
-                <p className="login-register-text">
-
-                    {t("noAccount")}{" "}
-
-                    <span
-                        onClick={() =>
-                            navigate("/register")
-                        }
-                    >
-                        {t("register")}
-                    </span>
-
-                </p>
-
-
-                {/* Back to landing page */}
-                <button
-                    type="button"
-                    className="login-back-home"
-                    onClick={() => navigate("/")}
-                >
-                    ← Back to Home
-                </button>
-
-            </div>
-
+            </main>
         </div>
     );
 }
